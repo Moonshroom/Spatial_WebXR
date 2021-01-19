@@ -1,0 +1,20 @@
+@mixin pulse_animation($duration: 1s, $iteration: infinite, $timing: linear) {
+    animation-duration: $duration;
+    animation-iteration-count: $iteration;
+    animation-timing-function: $timing;
+  }
+  
+  @mixin unselectable {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  @mixin text_readable {
+    text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black, 0 -0.05em black,
+      -0.05em -0.05em black, -0.05em 0.05em black, 0.05em -0.05em black,
+      0.05em 0.05em black;
+  }
+  

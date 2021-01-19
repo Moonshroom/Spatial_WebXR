@@ -1,0 +1,264 @@
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+body {
+  margin: 0;
+  background-color: black;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5))), url("./assets/low.png");
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("./assets/low.png");
+  background-size: 120% 120%;
+  background-attachment: fixed;
+  background-position: center;
+  -webkit-font-smoothing: antiliased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+body #background-pentagon-net {
+  background: url("./assets/pentagonNet.png");
+  background-repeat: round;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.2;
+  position: absolute;
+}
+
+body .menu-wrapper {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  width: 20vw;
+  height: 100vh;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: autofit;
+      grid-template-rows: autofit;
+  grid-row-gap: 5vh;
+  justify-items: end;
+  text-align: center;
+  z-index: 1;
+}
+
+body .menu-wrapper-links {
+  font-size: 1.5em;
+  color: #fdfdfb;
+  text-shadow: black 0px 0px 20px;
+  -ms-grid-row: 2;
+      grid-row-start: 2;
+  grid-row-end: 3;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  -ms-flex-item-align: end;
+      -ms-grid-row-align: end;
+      align-self: end;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body .menu-wrapper-links-aboutProject {
+  margin-top: 2vh;
+}
+
+body .menu-wrapper-links-aboutProject:hover {
+  -webkit-animation: pulse;
+          animation: pulse;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  cursor: pointer;
+}
+
+body .menu-wrapper-links-WebVR {
+  margin-top: 2vh;
+}
+
+body .menu-wrapper-links-WebVR:hover {
+  -webkit-animation: pulse;
+          animation: pulse;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  cursor: pointer;
+}
+
+body .menu-wrapper-links-WebAR {
+  margin-top: 2vh;
+}
+
+body .menu-wrapper-links-WebAR:hover {
+  -webkit-animation: pulse;
+          animation: pulse;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  cursor: pointer;
+}
+
+body .menu-wrapper-links-WebGL {
+  margin-top: 2vh;
+}
+
+body .menu-wrapper-links-WebGL:hover {
+  -webkit-animation: pulse;
+          animation: pulse;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  cursor: pointer;
+}
+
+body .menu-wrapper-copyrights {
+  -ms-grid-row: 4;
+      grid-row-start: 4;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  color: #fdfdfb;
+  font-size: 1em;
+  cursor: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body .about-wrapper {
+  position: relative;
+  width: 78vw;
+  height: 100vh;
+  z-index: 1;
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: "name name name" "webxr sp using";
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  -ms-grid-rows: 5rem auto;
+      grid-template-rows: 5rem auto;
+  grid-gap: 2vw;
+  color: #fdfdfb;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body .about-wrapper-name {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-area: name;
+  font-size: 2em;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  -ms-flex-item-align: end;
+      -ms-grid-row-align: end;
+      align-self: end;
+  text-shadow: black 0px 0px 15px;
+}
+
+body .about-wrapper-webxr {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: webxr;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  -ms-flex-item-align: start;
+      -ms-grid-row-align: start;
+      align-self: start;
+  text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black, 0 -0.05em black, -0.05em -0.05em black, -0.05em 0.05em black, 0.05em -0.05em black, 0.05em 0.05em black;
+  text-align: left;
+  font-size: 1em;
+  padding: 25px 25px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+body .about-wrapper-webxr-p {
+  text-align: justify;
+}
+
+body .about-wrapper-sp {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: sp;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  -ms-flex-item-align: start;
+      -ms-grid-row-align: start;
+      align-self: start;
+  text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black, 0 -0.05em black, -0.05em -0.05em black, -0.05em 0.05em black, 0.05em -0.05em black, 0.05em 0.05em black;
+  text-align: left;
+  font-size: 1em;
+  padding: 25px 25px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+body .about-wrapper-sp-p {
+  text-align: justify;
+}
+
+body .about-wrapper-using {
+  -ms-grid-row: 2;
+  -ms-grid-column: 3;
+  grid-area: using;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  -ms-flex-item-align: start;
+      -ms-grid-row-align: start;
+      align-self: start;
+  text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black, 0 -0.05em black, -0.05em -0.05em black, -0.05em 0.05em black, 0.05em -0.05em black, 0.05em 0.05em black;
+  text-align: left;
+  font-size: 1em;
+  padding: 25px 25px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+body .about-wrapper-using-p {
+  text-align: justify;
+}
+/*# sourceMappingURL=style.css.map */
