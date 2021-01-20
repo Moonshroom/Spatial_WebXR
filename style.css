@@ -123,7 +123,7 @@ body .menu-wrapper-copyrights {
   user-select: none;
 }
 
-body .component {
+body #about-component {
   position: relative;
   width: 78vw;
   height: 100vh;
@@ -133,8 +133,36 @@ body .component {
       grid-template-areas: "name name name" "webxr sp using";
   -ms-grid-columns: 1fr 1fr 1fr;
       grid-template-columns: 1fr 1fr 1fr;
-  -ms-grid-rows: 5rem auto;
-      grid-template-rows: 5rem auto;
+  -ms-grid-rows: 8rem auto;
+      grid-template-rows: 8rem auto;
+  grid-gap: 2vw;
+  color: #fdfdfb;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body #about-component #about-header {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: name;
+  font-size: 2em;
+      justify-self: center;
+  -ms-flex-item-align: end;
+      align-self: end;
+  text-shadow: black 0px 0px 15px;
+}
+
+body .component {
+  position: relative;
+  width: 78vw;
+  height: 100vh;
+  z-index: 1;
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: "name" "holder";
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  -ms-grid-rows: 8rem auto;
+      grid-template-rows: 8rem auto;
   grid-gap: 2vw;
   color: #fdfdfb;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -143,7 +171,6 @@ body .component {
 body .component-header {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
-  -ms-grid-column-span: 3;
   grid-area: name;
   font-size: 2em;
   -ms-grid-column-align: center;
@@ -152,6 +179,69 @@ body .component-header {
       -ms-grid-row-align: end;
       align-self: end;
   text-shadow: black 0px 0px 15px;
+}
+
+body .component-holder {
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: "one two three" "four five six";
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  -ms-grid-rows: 15fr 15fr;
+      grid-template-rows: 15fr 15fr;
+  grid-gap: 5vw;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  -ms-grid-row-align: center;
+      align-self: center;
+  text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black, 0 -0.05em black, -0.05em -0.05em black, -0.05em 0.05em black, 0.05em -0.05em black, 0.05em 0.05em black;
+  font-size: 1em;
+  overflow-y: auto;
+}
+
+body .component-holder-examples {
+  width: 20rem;
+  height: 15rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  border-radius: 5%;
+}
+
+body .component-holder #example-one {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: one;
+}
+
+body .component-holder #example-two {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: two;
+}
+
+body .component-holder #example-three {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+  grid-area: three;
+}
+
+body .component-holder #example-four {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: four;
+}
+
+body .component-holder #example-five {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: five;
+}
+
+body .component-holder #example-six {
+  -ms-grid-row: 2;
+  -ms-grid-column: 3;
+  grid-area: six;
 }
 
 body .component-panel {
@@ -165,6 +255,7 @@ body .component-panel {
   font-size: 1em;
   padding: 25px 25px;
   background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5%;
 }
 
 body .component-panel-p {

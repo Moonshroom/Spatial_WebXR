@@ -67,8 +67,7 @@ body{
             
         }
     }
-
-    .component{
+    #about-component{
         position: relative;
         width: 78vw;
         height: 100vh;
@@ -77,7 +76,28 @@ body{
         grid-template-areas: "name name name"
                              "webxr sp using";
         grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 5rem auto;
+        grid-template-rows: 8rem auto;
+        grid-gap: 2vw;
+        color: $textColorMain;
+        font-family: $fontFamily;
+        #about-header{
+            grid-area: name;
+            font-size: $bigFont;
+            justify-self: center;
+            align-self: end;
+            text-shadow: rgb(0, 0, 0) 0px 0px 15px;
+        }
+    }
+    .component{
+        position: relative;
+        width: 78vw;
+        height: 100vh;
+        z-index: 1;
+        display: grid;
+        grid-template-areas: "name"
+                             "holder";
+        grid-template-columns: 1fr;
+        grid-template-rows: 8rem auto;
         grid-gap: 2vw;
         color: $textColorMain;
         font-family: $fontFamily;
@@ -88,6 +108,47 @@ body{
             align-self: end;
             text-shadow: rgb(0, 0, 0) 0px 0px 15px;
         }
+        &-holder{         
+            display: grid;
+            grid-template-areas: "one two three"
+                                "four five six";
+            grid-template-columns: 1fr;
+            grid-template-rows: 15fr 15fr;
+            grid-gap: 5vw;
+            justify-self: center;
+            align-self: center;
+            @include text_readable;
+            font-size: $smallFont; 
+            overflow-y: auto;  
+
+
+            &-examples{
+                width: 20rem;
+                height: 15rem;
+                background-color: rgba(0, 0, 0, 0.5);
+                justify-content: space-around;
+                border-radius: 5%;
+            }
+
+            #example-one{
+                grid-area: one;
+            }
+            #example-two{
+                grid-area: two;
+            }
+            #example-three{
+                grid-area: three;
+            }
+            #example-four{
+                grid-area: four;
+            }
+            #example-five{
+                grid-area: five;
+            }
+            #example-six{
+                grid-area: six;
+            }
+        }
         &-panel{
             justify-self: center;
             align-self: start;
@@ -96,9 +157,11 @@ body{
             font-size: $smallFont;
             padding: 25px 25px;
             background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 5%;
             &-p{
                 text-align: justify;
             }
         }
     }
 }
+

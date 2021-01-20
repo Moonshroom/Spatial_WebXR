@@ -1,19 +1,23 @@
 //functions
 let loadMainPage = () => {
-    console.log("clicked_0");
-    window.location = "index.html"
+    if (window.location.pathname !== "/index.html"){
+        window.location = "index.html"
+    };  
 };
 let loadVRexamples = () => {
-    console.log("clicked_1");
-    window.location = "_VR_index.html"
+    if (window.location.pathname !== "/_VR_index.html"){
+        window.location = "_VR_index.html"
+    };  
 };
 let loadARexamples = () => {
-    console.log("clicked_2")
-    window.location = "_AR_index.html"
+    if (window.location.pathname !== "/_AR_index.html"){
+        window.location = "_AR_index.html"
+    };  
 };
 let loadWGLexamples = () => {
-    console.log("clicked_3")
-    window.location = "_WebGL_index.html"
+    if (window.location.pathname !== "/_WebGL_index.html"){
+        window.location = "_WebGL_index.html"
+    };  
 };
 
 //navigation
@@ -33,5 +37,5 @@ wglElement.addEventListener("click", loadWGLexamples);
 
 //app version
 let appVersion = document.getElementById("app-version");
-appVersion.innerHTML = "0.0.7"
+appVersion.innerHTML = "0.0.8"
 
