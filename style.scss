@@ -46,41 +46,14 @@ body{
             align-self: end;
             @include unselectable;
     
-            &-aboutProject{
+            &-link{
                 margin-top: 2vh;
                 &:hover{
                     animation: pulse;
                     @include pulse_animation;
                     cursor: pointer;
                 }
-            }
-    
-            &-WebVR{
-                margin-top: 2vh;
-                &:hover{
-                    animation: pulse;
-                    @include pulse_animation;
-                    cursor: pointer;
-                }
-            }
-            &-WebAR{
-                margin-top: 2vh;
-                &:hover{
-                    animation: pulse;
-                    @include pulse_animation;
-                    cursor: pointer;
-                }
-            }
-            &-WebGL{
-                margin-top: 2vh;
-                
-                &:hover{
-                    animation: pulse;
-                    @include pulse_animation;
-                    cursor: pointer;
-                }
-            }
-    
+            }    
         }
     
         &-copyrights{
@@ -95,7 +68,7 @@ body{
         }
     }
 
-    .about-wrapper{
+    .component{
         position: relative;
         width: 78vw;
         height: 100vh;
@@ -108,15 +81,14 @@ body{
         grid-gap: 2vw;
         color: $textColorMain;
         font-family: $fontFamily;
-        &-name{
+        &-header{
             grid-area: name;
             font-size: $bigFont;
             justify-self: center;
             align-self: end;
             text-shadow: rgb(0, 0, 0) 0px 0px 15px;
         }
-        &-webxr{
-            grid-area: webxr;
+        &-panel{
             justify-self: center;
             align-self: start;
             @include text_readable;
@@ -126,33 +98,6 @@ body{
             background-color: rgba(0, 0, 0, 0.5);
             &-p{
                 text-align: justify;
-            }
-        }
-        &-sp{
-            grid-area: sp;
-            justify-self: center;
-            align-self: start;
-            @include text_readable;
-            text-align: left;
-            font-size: $smallFont;;
-            padding: 25px 25px;   
-            background-color: rgba(0, 0, 0, 0.5);     
-            &-p{
-                text-align: justify;
-            }
-        }
-        &-using{
-            grid-area: using;
-            justify-self: center;
-            align-self: start;
-            @include text_readable;
-            text-align: left;
-            font-size: $smallFont;;
-            padding: 25px 25px;
-            background-color: rgba(0, 0, 0, 0.5);
-            &-p{
-                text-align: justify;
-    
             }
         }
     }

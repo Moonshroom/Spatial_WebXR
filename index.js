@@ -1,3 +1,4 @@
+//functions
 let loadMainPage = () => {
     console.log("clicked_0");
     window.location = "index.html"
@@ -15,16 +16,22 @@ let loadWGLexamples = () => {
     window.location = "_WebGL_index.html"
 };
 
+//navigation
 let aboutElement, vrElement, arElement, wglElement;
 
-aboutElement = document.getElementsByClassName("menu-wrapper-links-aboutProject");
-aboutElement[0].addEventListener("click", loadMainPage);
+aboutElement = document.getElementById("menu-wrapper-links-aboutProject");
+aboutElement.addEventListener("click", loadMainPage);
 
-vrElement = document.getElementsByClassName("menu-wrapper-links-WebVR");
-vrElement[0].addEventListener("click", loadVRexamples);
+vrElement = document.getElementById("menu-wrapper-links-WebVR");
+vrElement.addEventListener("click", loadVRexamples);
 
-arElement = document.getElementsByClassName("menu-wrapper-links-WebAR");
-arElement[0].addEventListener("click", loadARexamples);
+arElement = document.getElementById("menu-wrapper-links-WebAR");
+arElement.addEventListener("click", loadARexamples);
 
-wglElement = document.getElementsByClassName("menu-wrapper-links-WebGL");
-wglElement[0].addEventListener("click", loadWGLexamples);
+wglElement = document.getElementById("menu-wrapper-links-WebGL");
+wglElement.addEventListener("click", loadWGLexamples);
+
+//app version
+let appVersion = document.getElementById("app-version");
+appVersion.innerHTML = "0.0.7"
+
