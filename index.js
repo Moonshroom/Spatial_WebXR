@@ -20,6 +20,12 @@ let loadWGLexamples = () => {
     };  
 };
 
+let loadVrExOne = () => {
+    if (window.location.pathname !== "/examples/example_01/ex_01.html"){
+        window.location = "/examples/example_01/ex_01.html"
+    };  
+};
+
 //navigation
 let aboutElement, vrElement, arElement, wglElement;
 
@@ -35,6 +41,10 @@ arElement.addEventListener("click", loadARexamples);
 wglElement = document.getElementById("menu-wrapper-links-WebGL");
 wglElement.addEventListener("click", loadWGLexamples);
 
+//VR examples navigation
+let btnVrOne;
+btnVrOne = document.getElementById("btn-enterVR-one");
+btnVrOne.addEventListener("click", loadVrExOne);
 //app version
 let appVersion = document.getElementById("app-version");
 appVersion.innerHTML = "0.0.8"

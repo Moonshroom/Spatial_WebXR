@@ -212,6 +212,28 @@ body .component-holder #example-one {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
   grid-area: one;
+  font-size: 2em;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 8rem;
+}
+
+body .component-holder #example-one .btn-enterVR {
+  background-color: #06B12B;
+  border: none;
+  color: white;
+  padding: 12px 16px;
+  font-size: 0.8em;
+  border-radius: 10%;
+  cursor: pointer;
+}
+
+body .component-holder #example-one .btn-enterVR:hover {
+  background-color: #82ABA1;
+  -webkit-animation: grow;
+          animation: grow;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 body .component-holder #example-two {
