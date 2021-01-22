@@ -5,18 +5,18 @@ let loadMainPage = () => {
     };  
 };
 let loadVRexamples = () => {
-    if (window.location.pathname !== "/_VR_index.html"){
-        window.location = "/transition/_VR_index.html"
+    if (window.location.pathname !== "/VR_index.html"){
+        window.location = "/transition/VR_index.html"
     };  
 };
 let loadARexamples = () => {
-    if (window.location.pathname !== "/transition/_AR_index.html"){
-        window.location = "/transition/_AR_index.html"
+    if (window.location.pathname !== "/transition/AR_index.html"){
+        window.location = "/transition/AR_index.html"
     };  
 };
 let loadWGLexamples = () => {
-    if (window.location.pathname !== "/transition/_WebGL_index.html"){
-        window.location = "/transition/_WebGL_index.html"
+    if (window.location.pathname !== "/transition/WebGL_index.html"){
+        window.location = "/transition/WebGL_index.html"
     };  
 };
 
