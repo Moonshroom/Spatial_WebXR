@@ -45,9 +45,7 @@ class App{
         
         //loading models
         this.loadingBar = new LoadingBar();
-        this.loadMorasko();
         this.loadStaryrynek();
-        this.loadStarybrowar();
 
         this.initScene();
         this.setupVR();
@@ -64,26 +62,20 @@ class App{
     initScene(){
 
 		this.scene.background = new THREE.Color( 0xa0a0a0 );
-		// this.scene.fog = new THREE.Fog( 0xa0a0a0, 50, 100 );
-
-
-        const boxGeo = new THREE.BoxBufferGeometry(40, 10, 40);      
-        const boxMat = new THREE.MeshBasicMaterial({ color: new THREE.Color(0xffffff), side: THREE.FrontSide, transparent: true });
+        this.scene.fog = new THREE.Fog( 0xa0a0a0, 50, 100 );
+        
+        const boxGeo = new THREE.BoxBufferGeometry(30, 10, 30);      
+        const boxMat = new THREE.MeshLambertMaterial({ color: new THREE.Color(0x8f8d8c), side: THREE.BackSide});
         this.roomBox = new THREE.Mesh(boxGeo, boxMat);
         this.roomBox.position.y = 4
-        const edges = new THREE.EdgesGeometry( boxGeo );
-        const line = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: 0x000000,  linewidth: 5 } ) );
-        const edge = line.clone();
-        edge.position.copy( this.roomBox.position );
-        this.scene.add(edge);
         this.scene.add(this.roomBox) ;
 
 		// ground
-		const ground = new THREE.Mesh( new THREE.PlaneBufferGeometry( 40, 40 ), new THREE.MeshPhongMaterial( { color: 0x999999, depthWrite: false } ) );
+		const ground = new THREE.Mesh( new THREE.PlaneBufferGeometry( 30, 30 ), new THREE.MeshPhongMaterial( { color: 0x999999, depthWrite: false } ) );
 		ground.rotation.x = - Math.PI / 2;
 		this.scene.add( ground );
 
-		let grid = new THREE.GridHelper( 40, 10, 0x000000, 0x000000 );
+		let grid = new THREE.GridHelper( 30, 10, 0x000000, 0x000000 );
 		grid.material.opacity = 0.2;
 		grid.material.transparent = true;
         this.scene.add( grid );
@@ -248,45 +240,6 @@ class App{
    
         }
     }
-
-    loadMorasko(){
-        const loader = new GLTFLoader( ).setPath('./assets/');
-        const self = this;
-		let dracoLoader = new DRACOLoader();
-        dracoLoader.setDecoderPath('./libs/three/js/draco/');
-        loader.setDRACOLoader(dracoLoader);
-		// Load a glTF resource
-		loader.load(
-			// resource URL
-			'poznan_morasko.gltf',
-			// called when the resource is loaded
-			function ( gltf ) {
-                const bbox = new THREE.Box3().setFromObject( gltf.scene );
-                console.log(`min:${bbox.min.x.toFixed(2)},${bbox.min.y.toFixed(2)},${bbox.min.z.toFixed(2)} -  max:${bbox.max.x.toFixed(2)},${bbox.max.y.toFixed(2)},${bbox.max.z.toFixed(2)}`);
-                
-                self.mymesh = gltf.scene;
-                self.mymesh.position.set(42,-67.6,-79);
-				self.scene.add( gltf.scene );
-                
-                self.loadingBar.visible = false;
-				self.colliders.push(self.mymesh)
-				self.renderer.setAnimationLoop( self.render.bind(self));
-			},
-			// called while loading is progressing
-			function ( xhr ) {
-
-				self.loadingBar.progress = (xhr.loaded / xhr.total);
-				
-			},
-			// called when loading has errors
-			function ( error ) {
-
-				console.log( 'An error happened' );
-
-			}  
-        );
-    }
-
     loadStaryrynek(){
         const loader = new GLTFLoader( ).setPath('./assets/');
         const self = this;
@@ -304,44 +257,6 @@ class App{
                 
                 self.mymesh = gltf.scene;
                 self.mymesh.position.set(5.5,-71.7,5);
-				self.scene.add( gltf.scene );
-                
-                self.loadingBar.visible = false;
-				self.colliders.push(self.mymesh)
-				self.renderer.setAnimationLoop( self.render.bind(self));
-			},
-			// called while loading is progressing
-			function ( xhr ) {
-
-				self.loadingBar.progress = (xhr.loaded / xhr.total);
-				
-			},
-			// called when loading has errors
-			function ( error ) {
-
-				console.log( 'An error happened' );
-
-			}  
-        );
-    }
-
-    loadStarybrowar(){
-        const loader = new GLTFLoader( ).setPath('./assets/');
-        const self = this;
-		let dracoLoader = new DRACOLoader();
-        dracoLoader.setDecoderPath('./libs/three/js/draco/');
-        loader.setDRACOLoader(dracoLoader);
-		// Load a glTF resource
-		loader.load(
-			// resource URL
-			'poznan_starybrowar.gltf',
-			// called when the resource is loaded
-			function ( gltf ) {
-                const bbox = new THREE.Box3().setFromObject( gltf.scene );
-                console.log(`min:${bbox.min.x.toFixed(2)},${bbox.min.y.toFixed(2)},${bbox.min.z.toFixed(2)} -  max:${bbox.max.x.toFixed(2)},${bbox.max.y.toFixed(2)},${bbox.max.z.toFixed(2)}`);
-                
-                self.mymesh = gltf.scene;
-                self.mymesh.position.set(3.5,-56.40,-23.5);
 				self.scene.add( gltf.scene );
                 
                 self.loadingBar.visible = false;

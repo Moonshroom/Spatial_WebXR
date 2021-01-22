@@ -181,6 +181,24 @@ body .component-header {
   text-shadow: black 0px 0px 15px;
 }
 
+body .component-panel {
+  -ms-grid-column-align: center;
+      justify-self: center;
+  -ms-flex-item-align: start;
+      -ms-grid-row-align: start;
+      align-self: start;
+  text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black, 0 -0.05em black, -0.05em -0.05em black, -0.05em 0.05em black, 0.05em -0.05em black, 0.05em 0.05em black;
+  text-align: left;
+  font-size: 1em;
+  padding: 25px 25px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5%;
+}
+
+body .component-panel-p {
+  text-align: justify;
+}
+
 body .component-holder {
   display: -ms-grid;
   display: grid;
@@ -208,17 +226,7 @@ body .component-holder-examples {
   border-radius: 5%;
 }
 
-body .component-holder #example-one {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
-  grid-area: one;
-  font-size: 2em;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 8rem;
-}
-
-body .component-holder #example-one .btn-enterVR {
+body .component-holder-examples .btn-enterVR {
   background-color: #06B12B;
   border: none;
   color: white;
@@ -228,7 +236,7 @@ body .component-holder #example-one .btn-enterVR {
   cursor: pointer;
 }
 
-body .component-holder #example-one .btn-enterVR:hover {
+body .component-holder-examples .btn-enterVR:hover {
   background-color: #82ABA1;
   -webkit-animation: grow;
           animation: grow;
@@ -236,8 +244,20 @@ body .component-holder #example-one .btn-enterVR:hover {
           transform: scale(1.1);
 }
 
+body .component-holder #example-one {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 1;
+  grid-area: one;
+  font-size: 2em;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 6rem;
+}
+
 body .component-holder #example-two {
   -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
   -ms-grid-column: 2;
   grid-area: two;
 }
@@ -266,21 +286,77 @@ body .component-holder #example-six {
   grid-area: six;
 }
 
-body .component-panel {
+body .component-holder-ar {
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: "one two " "one two";
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  grid-gap: 5vw;
   -ms-grid-column-align: center;
       justify-self: center;
-  -ms-flex-item-align: start;
-      -ms-grid-row-align: start;
-      align-self: start;
+  -ms-grid-row-align: center;
+      align-self: center;
   text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black, 0 -0.05em black, -0.05em -0.05em black, -0.05em 0.05em black, 0.05em -0.05em black, 0.05em 0.05em black;
-  text-align: left;
   font-size: 1em;
-  padding: 25px 25px;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 5%;
+  overflow-y: auto;
 }
 
-body .component-panel-p {
-  text-align: justify;
+body .component-holder-ar .example-AR {
+  width: 25rem;
+  height: 15rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body .component-holder-ar .example-AR .btn-enterAR {
+  width: 250px;
+  background-color: #06B12B;
+  border: none;
+  color: white;
+  padding: 12px 16px;
+  font-size: 0.8em;
+  border-radius: 10%;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  cursor: pointer;
+}
+
+body .component-holder-ar .example-AR .btn-enterAR:hover {
+  background-color: #82ABA1;
+  -webkit-animation: grow;
+          animation: grow;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+body .component-holder-ar #example-one-ar {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 1;
+  grid-area: one;
+  font-size: 2em;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 8rem;
+}
+
+body .component-holder-ar #example-two-ar {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 2;
+  grid-area: two;
+  font-size: 2em;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 8rem;
 }
 /*# sourceMappingURL=style.css.map */
