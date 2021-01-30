@@ -171,10 +171,18 @@ body{
 
             }
             #example-two{
-                grid-area: two;
+                grid-area: two; 
+                font-size: $bigFont;
+                text-align: center;
+                vertical-align: middle;
+                line-height: 6rem; 
             }
             #example-three{
                 grid-area: three;
+                font-size: $bigFont;
+                text-align: center;
+                vertical-align: middle;
+                line-height: 3rem; 
             }
             #example-four{
                 grid-area: four;

@@ -260,12 +260,20 @@ body .component-holder #example-two {
   -ms-grid-row-span: 2;
   -ms-grid-column: 2;
   grid-area: two;
+  font-size: 2em;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 6rem;
 }
 
 body .component-holder #example-three {
   -ms-grid-row: 1;
   -ms-grid-column: 3;
   grid-area: three;
+  font-size: 2em;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 3rem;
 }
 
 body .component-holder #example-four {
