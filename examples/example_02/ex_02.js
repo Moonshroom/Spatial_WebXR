@@ -200,7 +200,7 @@ class App {
 
 	handleController(controller, dt) {
 		if (controller.userData.selectPressed) {
-			const wallLimit = 2;
+			const wallLimit = 1.5;
 			const speed = 2;
 			let pos = this.dolly.position.clone();
 			pos.y += 1;
