@@ -85,7 +85,16 @@ class App {
 		grid.material.transparent = true;
 		this.scene.add(grid);
 
-		this.colliders = [this.roomBox];
+		let geoLegend = new THREE.PlaneBufferGeometry(8, 8, 64);
+		let matLegend = new THREE.MeshLambertMaterial({
+			map: new THREE.TextureLoader().load('./assets/legenda.png'),
+			side: THREE.DoubleSide,
+		});
+		let legend = new THREE.Mesh(geoLegend, matLegend);
+		legend.position.set(0, 4, -10);
+		this.scene.add(legend);
+
+		this.colliders = [this.roomBox, legend];
 	}
 
 	setupVR() {
@@ -108,7 +117,7 @@ class App {
 		this.controller.addEventListener('selectend', onSelectEnd);
 		this.controller.addEventListener('connected', function (event) {
 			const mesh = self.buildController.call(self, event.data);
-			mesh.scale.z = 5;
+			mesh.scale.z = 0;
 			this.add(mesh);
 		});
 		this.controller.addEventListener('disconnected', function () {
@@ -127,7 +136,7 @@ class App {
 		this.controller1.addEventListener('selectend', onSelectEnd);
 		this.controller1.addEventListener('connected', function (event) {
 			const mesh1 = self.buildController.call(self, event.data);
-			mesh1.scale.z = 0;
+			mesh1.scale.z = 1.5;
 			this.add(mesh1);
 		});
 		this.controller1.addEventListener('disconnected', function () {
@@ -256,7 +265,7 @@ class App {
 		// Load a glTF resource
 		loader.load(
 			// resource URL
-			'MPZP_opa30_CRS_up.gltf',
+			'MPZP_opa50_CRS_up.gltf',
 			// called when the resource is loaded
 			function (gltf) {
 				const bbox = new THREE.Box3().setFromObject(gltf.scene);
