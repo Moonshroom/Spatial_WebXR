@@ -260,12 +260,12 @@ class App {
 		const loader = new GLTFLoader().setPath('./assets/');
 		const self = this;
 		let dracoLoader = new DRACOLoader();
-		dracoLoader.setDecoderPath('./libs/three/js/draco/');
+		dracoLoader.setDecoderPath('../libs/three/js/draco/');
 		loader.setDRACOLoader(dracoLoader);
 		// Load a glTF resource
 		loader.load(
 			// resource URL
-			'MPZP_opa50_CRS_up.gltf',
+			'MPZP_opa50_CRS_test.glb',
 			// called when the resource is loaded
 			function (gltf) {
 				const bbox = new THREE.Box3().setFromObject(gltf.scene);
