@@ -251,12 +251,12 @@ class App {
 		const loader = new GLTFLoader().setPath('./assets/');
 		const self = this;
 		let dracoLoader = new DRACOLoader();
-		dracoLoader.setDecoderPath('./libs/three/js/draco/');
+		dracoLoader.setDecoderPath('../libs/three/js/draco/');
 		loader.setDRACOLoader(dracoLoader);
 		// Load a glTF resource
 		loader.load(
 			// resource URL
-			'poznan_rynek_opt.glb',
+			'Rynek_opt.glb',
 			// called when the resource is loaded
 			function (gltf) {
 				const bbox = new THREE.Box3().setFromObject(gltf.scene);
@@ -269,7 +269,7 @@ class App {
 				);
 
 				self.mymesh = gltf.scene;
-				self.mymesh.position.set(5.5, -71.7, 5);
+				self.mymesh.position.set(5.5, -0.5, 5);
 				self.scene.add(gltf.scene);
 
 				self.loadingBar.visible = false;
