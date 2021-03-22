@@ -14,11 +14,6 @@ let loadARexamples = () => {
 		window.location = '/Spatial_WebXR/transition/AR_index.html'; //githubpages
 	}
 };
-let loadWGLexamples = () => {
-	if (window.location.pathname !== '/Spatial_WebXR/transition/WebGL_index.html') {
-		window.location = '/Spatial_WebXR/transition/WebGL_index.html'; //githubpages
-	}
-};
 
 // let loadMainPage = () => {
 //     if (window.location.pathname !== "/index.html"){
@@ -35,12 +30,6 @@ let loadWGLexamples = () => {
 //         window.location = "/transition/AR_index.html"
 //     };
 // };
-// let loadWGLexamples = () => {
-//     if (window.location.pathname !== "/transition/WebGL_index.html"){
-//         window.location = "/transition/WebGL_index.html"
-
-//     };
-// };
 
 //navigation
 let aboutElement, vrElement, arElement, wglElement;
@@ -54,12 +43,9 @@ vrElement.addEventListener('click', loadVRexamples);
 arElement = document.getElementById('menu-wrapper-links-WebAR');
 arElement.addEventListener('click', loadARexamples);
 
-wglElement = document.getElementById('menu-wrapper-links-WebGL');
-wglElement.addEventListener('click', loadWGLexamples);
-
 //app version
 let appVersion = document.getElementById('app-version');
-appVersion.innerHTML = '0.1.0';
+appVersion.innerHTML = '0.2.0';
 
 //VR examples navigation
 let loadVrExOne = () => {
@@ -79,6 +65,7 @@ let loadVrExThree = () => {
 		window.location = '/Spatial_WebXR/examples/example_03/ex_03.html';
 	}
 };
+
 let btnVrOne;
 btnVrOne = document.getElementById('btn-enterVR-one');
 btnVrOne.addEventListener('click', loadVrExOne);

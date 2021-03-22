@@ -1,258 +1,259 @@
-@import "./styles/variables";
-@import "./styles/animations";
-@import "./styles/functions.scss";
+@import './styles/variables';
+@import './styles/animations';
+@import './styles/functions.scss';
 
-body{
-    margin: 0;
-    background-color: black;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('./assets/low.png');
-    background-size: 120% 120%;
-    background-attachment: fixed;
-    background-position: center;
-    -webkit-font-smoothing: antiliased;
-    -moz-osx-font-smoothing: grayscale;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: row;
+body {
+	margin: 0;
+	background-color: black;
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./assets/low.png');
+	background-size: 120% 120%;
+	background-attachment: fixed;
+	background-position: center;
+	-webkit-font-smoothing: antiliased;
+	-moz-osx-font-smoothing: grayscale;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: row;
 
-    #background-pentagon-net{
-        background: url('./assets/pentagonNet.png');
-        background-repeat: round;
-        width: 100vw;
-        height: 100vh;
-        opacity: 0.2;
-        position: absolute;
-    }
-    .menu-wrapper{
-        font-family: $fontFamily;
-        position: relative;
-        width: 20vw;
-        height: 100vh;
-        display: grid;
-        grid-template-rows:autofit;
-        grid-row-gap: 5vh;
-        justify-items: end;
-        text-align: center;
-        z-index: 1;
-        
-    
-        &-links{
-            font-size: $menuFontSize;
-            color: $textColorMain;
-            text-shadow: rgb(0, 0, 0) 0px 0px 20px;
-            grid-row-start: 2;
-            grid-row-end: 3;
-            justify-self: center;
-            align-self: end;
-            @include unselectable;
-    
-            &-link{
-                margin-top: 2vh;
-                &:hover{
-                    animation: pulse;
-                    @include pulse_animation;
-                    cursor: pointer;
-                }
-            }    
-        }
-    
-        &-copyrights{
-            grid-row-start: 4;
-            justify-self: center;
-            align-self: center ;
-            color: $textColorMain;
-            font-size: $smallFont;
-            cursor:none;
-            @include unselectable;
-            
-        }
-    }
-    #about-component{
-        position: relative;
-        width: 78vw;
-        height: 100vh;
-        z-index: 1;
-        display: grid;
-        grid-template-areas: "name name name"
-                             "webxr sp using";
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 8rem auto;
-        grid-gap: 2vw;
-        color: $textColorMain;
-        font-family: $fontFamily;
-        #about-header{
-            grid-area: name;
-            font-size: $bigFont;
-            justify-self: center;
-            align-self: end;
-            text-shadow: rgb(0, 0, 0) 0px 0px 15px;
-        }
-    }
-    .component{
-        position: relative;
-        width: 78vw;
-        height: 100vh;
-        z-index: 1;
-        display: grid;
-        grid-template-areas: "name"
-                             "holder";
-        grid-template-columns: 1fr;
-        grid-template-rows: 8rem auto;
-        grid-gap: 2vw;
-        color: $textColorMain;
-        font-family: $fontFamily;
-        &-header{
-            grid-area: name;
-            font-size: $bigFont;
-            justify-self: center;
-            align-self: end;
-            text-shadow: rgb(0, 0, 0) 0px 0px 15px;
-        }
-        
-        &-panel{
-            justify-self: center;
-            align-self: start;
-            @include text_readable;
-            text-align: left;
-            font-size: $smallFont;
-            padding: 25px 25px;
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 5%;
-                &-p{
-                    text-align: justify;
-                    }
-                }
+	#background-pentagon-net {
+		background: url('./assets/pentagonNet.png');
+		background-repeat: round;
+		width: 100vw;
+		height: 100vh;
+		opacity: 0.2;
+		position: absolute;
+	}
+	.menu-wrapper {
+		font-family: $fontFamily;
+		position: relative;
+		width: 20vw;
+		height: 100vh;
+		display: grid;
+		grid-template-rows: autofit;
+		grid-row-gap: 5vh;
+		justify-items: end;
+		text-align: center;
+		z-index: 1;
 
-        &-holder{         
-            display: grid;
-            grid-template-areas: "one two three"
-                                "four five six";
-            grid-template-columns: 1fr;
-            grid-template-rows: 15fr 15fr;
-            grid-gap: 5vw;
-            justify-self: center;
-            align-self: center;
-            @include text_readable;
-            font-size: $smallFont; 
-            overflow-y: auto;  
+		&-links {
+			font-size: $menuFontSize;
+			color: $textColorMain;
+			text-shadow: rgb(0, 0, 0) 0px 0px 20px;
+			grid-row-start: 2;
+			grid-row-end: 3;
+			justify-self: center;
+			align-self: end;
+			@include unselectable;
+			@include text_readable;
 
+			#menu-wrapper-links-WebGL {
+				display: none;
+			}
+			&-link {
+				margin-top: 2vh;
+				&:hover {
+					animation: pulse;
+					@include pulse_animation;
+					cursor: pointer;
+				}
+			}
+		}
 
-            &-examples{
-                width: 20rem;
-                height: 15rem;
-                background-color: rgba(0, 0, 0, 0.5);
-                justify-content: space-around;
-                border-radius: 5%;
-                
-                .btn-enterVR {
-                    background-color:$buttonOne;
-                    border: none;
-                    color: white;
-                    padding: 12px 16px;
-                    font-size: 0.8em;
-                    border-radius: 10%;
-                    cursor: pointer;
-                    
-                  
-                  &:hover {
-                    background-color:$butonOneHover;
-                    animation: grow;
-                    transform: scale(1.1);
-                        }
-                    }
-            }
+		&-copyrights {
+			grid-row-start: 4;
+			justify-self: center;
+			align-self: end;
+			padding-bottom: 10%;
+			color: $textColorMain;
+			font-size: $smallFont;
+			cursor: none;
+			@include unselectable;
+			@include text_readable;
+		}
+	}
+	#about-component {
+		position: relative;
+		width: 78vw;
+		height: 100vh;
+		z-index: 1;
+		display: grid;
+		grid-template-areas:
+			'name name name'
+			'webxr sp using';
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-template-rows: 8rem auto;
+		grid-gap: 2vw;
+		color: $textColorMain;
+		font-family: $fontFamily;
+		cursor: default;
+		@include unselectable;
+		#about-header {
+			grid-area: name;
+			font-size: $bigFont;
+			justify-self: center;
+			align-self: end;
+			text-shadow: rgb(0, 0, 0) 0px 0px 15px;
+		}
+	}
+	.component {
+		position: relative;
+		width: 78vw;
+		height: 100vh;
+		z-index: 1;
+		display: grid;
+		grid-template-areas:
+			'name'
+			'holder';
+		grid-template-columns: 1fr;
+		grid-template-rows: 8rem auto;
+		grid-gap: 2vw;
+		color: $textColorMain;
+		font-family: $fontFamily;
+		&-header {
+			grid-area: name;
+			font-size: $bigFont;
+			justify-self: center;
+			align-self: end;
+			text-shadow: rgb(0, 0, 0) 0px 0px 15px;
+		}
 
-            #example-one{
-                grid-area: one; 
-                font-size: $bigFont;
-                text-align: center;
-                vertical-align: middle;
-                line-height: 6rem;  
+		&-panel {
+			justify-self: center;
+			align-self: start;
+			@include text_readable;
+			text-align: left;
+			font-size: $smallFont;
+			padding: 25px 25px;
+			background-color: rgba(0, 0, 0, 0.5);
+			border-radius: 5%;
+			&-p {
+				text-align: justify;
+			}
+		}
 
-            }
-            #example-two{
-                grid-area: two; 
-                font-size: $bigFont;
-                text-align: center;
-                vertical-align: middle;
-                line-height: 6rem; 
-            }
-            #example-three{
-                grid-area: three;
-                font-size: $bigFont;
-                text-align: center;
-                vertical-align: middle;
-                line-height: 3rem; 
-            }
-            #example-four{
-                grid-area: four;
-            }
-            #example-five{
-                grid-area: five;
-            }
-            #example-six{
-                grid-area: six;
-            }
-        }
-        &-holder-ar{         
-            display: grid;
-            grid-template-areas: "one two "
-                                 "one two" ;
-            grid-template-columns: 1fr ;
-            grid-gap: 5vw;
-            justify-self: center;
-            align-self: center;
-            @include text_readable;
-            font-size: $smallFont; 
-            overflow-y: auto;  
+		&-holder {
+			display: grid;
+			grid-template-areas:
+				'one two three'
+				'four five six';
+			grid-template-columns: 1fr;
+			grid-template-rows: 15fr 15fr;
+			grid-gap: 5vw;
+			justify-self: center;
+			align-self: center;
+			@include text_readable;
+			font-size: $smallFont;
+			overflow-y: auto;
 
+			&-examples {
+				width: 20rem;
+				height: 15rem;
+				background-color: rgba(0, 0, 0, 0.5);
+				justify-content: space-around;
+				border-radius: 5%;
 
-            .example-AR{
-                width: 25rem;
-                height: 15rem;
-                background-color: rgba(0, 0, 0, 0.5);
-                border-radius: 5%;
-                display: flex;
-                flex-direction: column;
-                
-                .btn-enterAR {
-                    width: 250px;
-                    background-color:$buttonOne;
-                    border: none;
-                    color: white;
-                    padding: 12px 16px;
-                    font-size: 0.8em;
-                    border-radius: 10%;
-                    align-self: center;
-                    cursor: pointer;
-                  
-                  &:hover {
-                    background-color:$butonOneHover;
-                    animation: grow;
-                    transform: scale(1.1);
-                  }
-                }
-            }
+				.btn-enterVR {
+					background-color: $buttonOne;
+					border: none;
+					color: white;
+					padding: 12px 16px;
+					font-size: 0.8em;
+					border-radius: 10%;
+					cursor: pointer;
 
-            #example-one-ar{
-                grid-area: one;
-                font-size: $bigFont;
-                text-align: center;
-                vertical-align: middle;
-                line-height: 8rem; 
-                
-            }
-            #example-two-ar{
-                grid-area: two;
-                font-size: $bigFont;
-                text-align: center;
-                vertical-align: middle;
-                line-height: 8rem; 
-            }
+					&:hover {
+						background-color: $butonOneHover;
+						animation: grow;
+						transform: scale(1.1);
+					}
+				}
+			}
 
-        
-        }
-        
-    
-    }
+			#example-one {
+				grid-area: one;
+				font-size: $bigFont;
+				text-align: center;
+				vertical-align: middle;
+				line-height: 6rem;
+			}
+			#example-two {
+				grid-area: two;
+				font-size: $bigFont;
+				text-align: center;
+				vertical-align: middle;
+				line-height: 6rem;
+			}
+			#example-three {
+				grid-area: three;
+				font-size: $bigFont;
+				text-align: center;
+				vertical-align: middle;
+				line-height: 3rem;
+			}
+			#example-four {
+				grid-area: four;
+			}
+			#example-five {
+				grid-area: five;
+			}
+			#example-six {
+				grid-area: six;
+			}
+		}
+		&-holder-ar {
+			display: grid;
+			grid-template-areas:
+				'one two '
+				'one two';
+			grid-template-columns: 1fr;
+			grid-gap: 5vw;
+			justify-self: center;
+			align-self: center;
+			@include text_readable;
+			font-size: $smallFont;
+			overflow-y: auto;
+
+			.example-AR {
+				width: 25rem;
+				height: 15rem;
+				background-color: rgba(0, 0, 0, 0.5);
+				border-radius: 5%;
+				display: flex;
+				flex-direction: column;
+
+				.btn-enterAR {
+					width: 250px;
+					background-color: $buttonOne;
+					border: none;
+					color: white;
+					padding: 12px 16px;
+					font-size: 0.8em;
+					border-radius: 10%;
+					align-self: center;
+					cursor: pointer;
+
+					&:hover {
+						background-color: $butonOneHover;
+						animation: grow;
+						transform: scale(1.1);
+					}
+				}
+			}
+
+			#example-one-ar {
+				grid-area: one;
+				font-size: $bigFont;
+				text-align: center;
+				vertical-align: middle;
+				line-height: 8rem;
+			}
+			#example-two-ar {
+				grid-area: two;
+				font-size: $bigFont;
+				text-align: center;
+				vertical-align: middle;
+				line-height: 8rem;
+			}
+		}
+	}
 }

@@ -88,6 +88,11 @@ body .menu-wrapper-links {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black, 0 -0.05em black, -0.05em -0.05em black, -0.05em 0.05em black, 0.05em -0.05em black, 0.05em 0.05em black;
+}
+
+body .menu-wrapper-links #menu-wrapper-links-WebGL {
+  display: none;
 }
 
 body .menu-wrapper-links-link {
@@ -111,9 +116,10 @@ body .menu-wrapper-copyrights {
       grid-row-start: 4;
   -ms-grid-column-align: center;
       justify-self: center;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
+  -ms-flex-item-align: end;
+      -ms-grid-row-align: end;
+      align-self: end;
+  padding-bottom: 10%;
   color: #fdfdfb;
   font-size: 1em;
   cursor: none;
@@ -121,6 +127,7 @@ body .menu-wrapper-copyrights {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black, 0 -0.05em black, -0.05em -0.05em black, -0.05em 0.05em black, 0.05em -0.05em black, 0.05em 0.05em black;
 }
 
 body #about-component {
@@ -130,7 +137,7 @@ body #about-component {
   z-index: 1;
   display: -ms-grid;
   display: grid;
-      grid-template-areas: "name name name" "webxr sp using";
+      grid-template-areas: 'name name name' 'webxr sp using';
   -ms-grid-columns: 1fr 1fr 1fr;
       grid-template-columns: 1fr 1fr 1fr;
   -ms-grid-rows: 8rem auto;
@@ -138,6 +145,11 @@ body #about-component {
   grid-gap: 2vw;
   color: #fdfdfb;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  cursor: default;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 body #about-component #about-header {
@@ -158,7 +170,7 @@ body .component {
   z-index: 1;
   display: -ms-grid;
   display: grid;
-      grid-template-areas: "name" "holder";
+      grid-template-areas: 'name' 'holder';
   -ms-grid-columns: 1fr;
       grid-template-columns: 1fr;
   -ms-grid-rows: 8rem auto;
@@ -202,7 +214,7 @@ body .component-panel-p {
 body .component-holder {
   display: -ms-grid;
   display: grid;
-      grid-template-areas: "one two three" "four five six";
+      grid-template-areas: 'one two three' 'four five six';
   -ms-grid-columns: 1fr;
       grid-template-columns: 1fr;
   -ms-grid-rows: 15fr 15fr;
@@ -297,7 +309,7 @@ body .component-holder #example-six {
 body .component-holder-ar {
   display: -ms-grid;
   display: grid;
-      grid-template-areas: "one two " "one two";
+      grid-template-areas: 'one two ' 'one two';
   -ms-grid-columns: 1fr;
       grid-template-columns: 1fr;
   grid-gap: 5vw;
