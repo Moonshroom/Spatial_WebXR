@@ -5,31 +5,15 @@ let loadMainPage = () => {
 	}
 };
 let loadVRexamples = () => {
-	if (window.location.pathname !== '/Spatial_WebXR/transition/VR_index.html') {
-		window.location = '/Spatial_WebXR/transition/VR_index.html'; //githubpages
+	if (window.location.pathname !== '/Spatial_WebXR/VR_index.html') {
+		window.location = '/Spatial_WebXR/VR_index.html'; //githubpages
 	}
 };
 let loadARexamples = () => {
-	if (window.location.pathname !== '/Spatial_WebXR/transition/AR_index.html') {
-		window.location = '/Spatial_WebXR/transition/AR_index.html'; //githubpages
+	if (window.location.pathname !== '/Spatial_WebXR/AR_index.html') {
+		window.location = '/Spatial_WebXR/AR_index.html'; //githubpages
 	}
 };
-
-// let loadMainPage = () => {
-//     if (window.location.pathname !== "/index.html"){
-//         window.location = "/index.html"
-//     };
-// };
-// let loadVRexamples = () => {
-//     if (window.location.pathname !== "/VR_index.html"){
-//         window.location = "/transition/VR_index.html"
-//     };
-// };
-// let loadARexamples = () => {
-//     if (window.location.pathname !== "/transition/AR_index.html"){
-//         window.location = "/transition/AR_index.html"
-//     };
-// };
 
 //navigation
 let aboutElement, vrElement, arElement, wglElement;

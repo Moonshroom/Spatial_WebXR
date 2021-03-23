@@ -73,7 +73,7 @@ body .menu-wrapper {
 }
 
 body .menu-wrapper-links {
-  font-size: 1.5em;
+  font-size: 1.8em;
   color: #fdfdfb;
   text-shadow: black 0px 0px 20px;
   -ms-grid-row: 2;
@@ -178,6 +178,10 @@ body .component {
   grid-gap: 2vw;
   color: #fdfdfb;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 body .component-header {
@@ -214,7 +218,7 @@ body .component-panel-p {
 body .component-holder {
   display: -ms-grid;
   display: grid;
-      grid-template-areas: 'one two three' 'four five six';
+      grid-template-areas: 'one two' 'three four';
   -ms-grid-columns: 1fr;
       grid-template-columns: 1fr;
   -ms-grid-rows: 15fr 15fr;
@@ -230,8 +234,8 @@ body .component-holder {
 }
 
 body .component-holder-examples {
-  width: 20rem;
-  height: 15rem;
+  width: 28rem;
+  height: 14rem;
   background-color: rgba(0, 0, 0, 0.5);
   -ms-flex-pack: distribute;
       justify-content: space-around;
@@ -239,17 +243,18 @@ body .component-holder-examples {
 }
 
 body .component-holder-examples .btn-enterVR {
-  background-color: #06B12B;
+  background-color: #06b12b;
   border: none;
   color: white;
   padding: 12px 16px;
+  margin-top: 20px;
   font-size: 0.8em;
   border-radius: 10%;
   cursor: pointer;
 }
 
 body .component-holder-examples .btn-enterVR:hover {
-  background-color: #82ABA1;
+  background-color: #82aba1;
   -webkit-animation: grow;
           animation: grow;
   -webkit-transform: scale(1.1);
@@ -279,10 +284,11 @@ body .component-holder #example-two {
 }
 
 body .component-holder #example-three {
-  -ms-grid-row: 1;
-  -ms-grid-column: 3;
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
   grid-area: three;
   font-size: 2em;
+  padding-top: 10px;
   text-align: center;
   vertical-align: middle;
   line-height: 3rem;
@@ -290,20 +296,13 @@ body .component-holder #example-three {
 
 body .component-holder #example-four {
   -ms-grid-row: 2;
-  -ms-grid-column: 1;
-  grid-area: four;
-}
-
-body .component-holder #example-five {
-  -ms-grid-row: 2;
   -ms-grid-column: 2;
-  grid-area: five;
-}
-
-body .component-holder #example-six {
-  -ms-grid-row: 2;
-  -ms-grid-column: 3;
-  grid-area: six;
+  grid-area: four;
+  font-size: 2em;
+  padding-top: 10px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 3rem;
 }
 
 body .component-holder-ar {
@@ -338,7 +337,7 @@ body .component-holder-ar .example-AR {
 
 body .component-holder-ar .example-AR .btn-enterAR {
   width: 250px;
-  background-color: #06B12B;
+  background-color: #06b12b;
   border: none;
   color: white;
   padding: 12px 16px;
@@ -351,7 +350,7 @@ body .component-holder-ar .example-AR .btn-enterAR {
 }
 
 body .component-holder-ar .example-AR .btn-enterAR:hover {
-  background-color: #82ABA1;
+  background-color: #82aba1;
   -webkit-animation: grow;
           animation: grow;
   -webkit-transform: scale(1.1);
