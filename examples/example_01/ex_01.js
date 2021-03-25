@@ -15,7 +15,7 @@ class App {
 		this.clock = new THREE.Clock();
 
 		this.camera = new THREE.PerspectiveCamera(
-			100,
+			75,
 			window.innerWidth / window.innerHeight,
 			0.1,
 			200
@@ -51,6 +51,7 @@ class App {
 		//loading models
 		this.loadingBar = new LoadingBar();
 		this.loadStaryrynek();
+		this.loadGoogleSR();
 
 		this.initScene();
 		this.setupVR();
@@ -270,6 +271,46 @@ class App {
 
 				self.mymesh = gltf.scene;
 				self.mymesh.position.set(5.5, -0.5, 5);
+				self.scene.add(gltf.scene);
+
+				self.loadingBar.visible = false;
+				self.colliders.push(self.mymesh);
+				self.renderer.setAnimationLoop(self.render.bind(self));
+			},
+			// called while loading is progressing
+			function (xhr) {
+				self.loadingBar.progress = xhr.loaded / xhr.total;
+			},
+			// called when loading has errors
+			function (error) {
+				console.log('An error happened');
+			}
+		);
+	}
+
+	loadGoogleSR() {
+		const loader = new GLTFLoader().setPath('./assets/');
+		const self = this;
+		let dracoLoader = new DRACOLoader();
+		dracoLoader.setDecoderPath('../libs/three/js/draco/');
+		loader.setDRACOLoader(dracoLoader);
+		// Load a glTF resource
+		loader.load(
+			// resource URL
+			'Stary_rynek_google.glb',
+			// called when the resource is loaded
+			function (gltf) {
+				const bbox = new THREE.Box3().setFromObject(gltf.scene);
+				console.log(
+					`min:${bbox.min.x.toFixed(2)},${bbox.min.y.toFixed(2)},${bbox.min.z.toFixed(
+						2
+					)} -  max:${bbox.max.x.toFixed(2)},${bbox.max.y.toFixed(
+						2
+					)},${bbox.max.z.toFixed(2)}`
+				);
+
+				self.mymesh = gltf.scene;
+				self.mymesh.position.set(5, 0.5, -1);
 				self.scene.add(gltf.scene);
 
 				self.loadingBar.visible = false;
