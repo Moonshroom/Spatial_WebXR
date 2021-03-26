@@ -99,21 +99,21 @@ class App {
 		mainUi.position.set(-0.5, 2, -7);
 
 		let uiSmallGeo = new THREE.PlaneBufferGeometry(4, 3, 32);
-
 		let srUI = new THREE.Mesh(
 			uiSmallGeo,
 			new THREE.MeshLambertMaterial({
-				map: new THREE.TextureLoader().load('./assets/low.png'),
+				map: new THREE.TextureLoader().load('./assets/SRG.png'),
 				side: THREE.FrontSide,
 			})
 		);
 		srUI.rotation.y = Math.PI / -2;
 		srUI.position.set(8.5, 3, -3);
+		srUI.material.opacity = 0.5;
 
 		let srgoogleUI = new THREE.Mesh(
 			uiSmallGeo,
 			new THREE.MeshLambertMaterial({
-				map: new THREE.TextureLoader().load('./assets/low.png'),
+				map: new THREE.TextureLoader().load('./assets/SR.png'),
 				side: THREE.FrontSide,
 			})
 		);
@@ -123,7 +123,7 @@ class App {
 		let sbUI = new THREE.Mesh(
 			uiSmallGeo,
 			new THREE.MeshLambertMaterial({
-				map: new THREE.TextureLoader().load('./assets/low.png'),
+				map: new THREE.TextureLoader().load('./assets/SB.png'),
 				side: THREE.FrontSide,
 			})
 		);
@@ -133,7 +133,7 @@ class App {
 		let sbgoogleUI = new THREE.Mesh(
 			uiSmallGeo,
 			new THREE.MeshLambertMaterial({
-				map: new THREE.TextureLoader().load('./assets/low.png'),
+				map: new THREE.TextureLoader().load('./assets/SBG.png'),
 				side: THREE.FrontSide,
 			})
 		);
@@ -151,7 +151,7 @@ class App {
 		this.scene.add(ground);
 
 		let grid = new THREE.GridHelper(30, 30, 0x000000, 0x000000);
-		grid.material.opacity = 0.2;
+		grid.material.opacity = 0.1;
 		grid.material.transparent = true;
 		this.scene.add(grid);
 
