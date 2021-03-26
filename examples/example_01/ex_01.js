@@ -108,7 +108,6 @@ class App {
 		);
 		srUI.rotation.y = Math.PI / -2;
 		srUI.position.set(8.5, 3, -3);
-		srUI.material.opacity = 0.5;
 
 		let srgoogleUI = new THREE.Mesh(
 			uiSmallGeo,
