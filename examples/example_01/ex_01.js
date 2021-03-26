@@ -339,7 +339,7 @@ class App {
 				);
 
 				self.mymesh = gltf.scene;
-				self.mymesh.position.set(5.5, -0.5, 5.5);
+				self.mymesh.position.set(5.5, -0.8, 5.5);
 				self.scene.add(gltf.scene);
 
 				self.loadingBar.visible = false;
@@ -379,7 +379,7 @@ class App {
 				);
 
 				self.mymesh = gltf.scene;
-				self.mymesh.position.set(5, 0.7, -2.5);
+				self.mymesh.position.set(5, 0.6, -2.5);
 				self.scene.add(gltf.scene);
 
 				self.loadingBar.visible = false;
@@ -419,7 +419,7 @@ class App {
 				);
 
 				self.mymesh = gltf.scene;
-				self.mymesh.position.set(-5, 1, 4);
+				self.mymesh.position.set(-5, 0.8, 4);
 				self.mymesh.scale.set(0.01, 0.01, 0.01);
 				self.scene.add(gltf.scene);
 
