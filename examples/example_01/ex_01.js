@@ -50,9 +50,10 @@ class App {
 
 		//loading models
 		this.loadingBar = new LoadingBar();
-		this.loadStaryrynek();
+		this.loadSR();
 		this.loadGoogleSR();
 		this.loadSB();
+		this.loadGoogleSB();
 
 		this.initScene();
 		this.setupVR();
@@ -74,6 +75,73 @@ class App {
 		this.roomBox.position.y = 4.5;
 		this.scene.add(this.roomBox);
 
+		const tableGeo = new THREE.BoxBufferGeometry(6, 1.2, 15);
+		const tableMat = new THREE.MeshLambertMaterial({
+			color: new THREE.Color(0x8f8d8c),
+			side: THREE.FrontSide,
+		});
+
+		this.tableSR = new THREE.Mesh(tableGeo, tableMat);
+		this.tableSR.position.set(5.9, 0, 0);
+
+		this.tableSB = new THREE.Mesh(tableGeo, tableMat);
+		this.tableSB.position.set(-7, 0, 0);
+
+		this.scene.add(this.tableSB, this.tableSR);
+
+		let uiMainGeo = new THREE.PlaneBufferGeometry(5, 4, 32);
+		let uiMainMat = new THREE.MeshLambertMaterial({
+			map: new THREE.TextureLoader().load('./assets/low.png'),
+			side: THREE.DoubleSide,
+		});
+
+		let mainUi = new THREE.Mesh(uiMainGeo, uiMainMat);
+		mainUi.position.set(-0.5, 2, -7);
+
+		let uiSmallGeo = new THREE.PlaneBufferGeometry(4, 3, 32);
+
+		let srUI = new THREE.Mesh(
+			uiSmallGeo,
+			new THREE.MeshLambertMaterial({
+				map: new THREE.TextureLoader().load('./assets/low.png'),
+				side: THREE.FrontSide,
+			})
+		);
+		srUI.rotation.y = Math.PI / -2;
+		srUI.position.set(8.5, 3, -3);
+
+		let srgoogleUI = new THREE.Mesh(
+			uiSmallGeo,
+			new THREE.MeshLambertMaterial({
+				map: new THREE.TextureLoader().load('./assets/low.png'),
+				side: THREE.FrontSide,
+			})
+		);
+		srgoogleUI.rotation.y = Math.PI / -2;
+		srgoogleUI.position.set(8.5, 3, 5);
+
+		let sbUI = new THREE.Mesh(
+			uiSmallGeo,
+			new THREE.MeshLambertMaterial({
+				map: new THREE.TextureLoader().load('./assets/low.png'),
+				side: THREE.FrontSide,
+			})
+		);
+		sbUI.rotation.y = Math.PI / 2;
+		sbUI.position.set(-10, 3, 4);
+
+		let sbgoogleUI = new THREE.Mesh(
+			uiSmallGeo,
+			new THREE.MeshLambertMaterial({
+				map: new THREE.TextureLoader().load('./assets/low.png'),
+				side: THREE.FrontSide,
+			})
+		);
+		sbgoogleUI.rotation.y = Math.PI / 2;
+		sbgoogleUI.position.set(-10, 3, -3);
+
+		this.scene.add(mainUi, srUI, srgoogleUI, sbUI, sbgoogleUI);
+
 		// ground
 		const ground = new THREE.Mesh(
 			new THREE.PlaneBufferGeometry(30, 30),
@@ -87,7 +155,7 @@ class App {
 		grid.material.transparent = true;
 		this.scene.add(grid);
 
-		this.colliders = [this.roomBox];
+		this.colliders = [this.roomBox, this.mainUi];
 	}
 
 	setupVR() {
@@ -249,7 +317,7 @@ class App {
 			this.dolly.quaternion.copy(quaternion);
 		}
 	}
-	loadStaryrynek() {
+	loadSR() {
 		const loader = new GLTFLoader().setPath('./assets/');
 		const self = this;
 		let dracoLoader = new DRACOLoader();
@@ -271,7 +339,7 @@ class App {
 				);
 
 				self.mymesh = gltf.scene;
-				self.mymesh.position.set(5.5, -0.5, 5);
+				self.mymesh.position.set(5.5, -0.5, 5.5);
 				self.scene.add(gltf.scene);
 
 				self.loadingBar.visible = false;
@@ -311,7 +379,7 @@ class App {
 				);
 
 				self.mymesh = gltf.scene;
-				self.mymesh.position.set(5, 0.5, -1);
+				self.mymesh.position.set(5, 0.7, -2.5);
 				self.scene.add(gltf.scene);
 
 				self.loadingBar.visible = false;
@@ -351,8 +419,48 @@ class App {
 				);
 
 				self.mymesh = gltf.scene;
-				self.mymesh.position.set(-5, 0.5, 4);
+				self.mymesh.position.set(-5, 1, 4);
 				self.mymesh.scale.set(0.01, 0.01, 0.01);
+				self.scene.add(gltf.scene);
+
+				self.loadingBar.visible = false;
+				self.colliders.push(self.mymesh);
+				self.renderer.setAnimationLoop(self.render.bind(self));
+			},
+			// called while loading is progressing
+			function (xhr) {
+				self.loadingBar.progress = xhr.loaded / xhr.total;
+			},
+			// called when loading has errors
+			function (error) {
+				console.log('An error happened');
+			}
+		);
+	}
+
+	loadGoogleSB() {
+		const loader = new GLTFLoader().setPath('./assets/');
+		const self = this;
+		let dracoLoader = new DRACOLoader();
+		dracoLoader.setDecoderPath('../libs/three/js/draco/');
+		loader.setDRACOLoader(dracoLoader);
+		// Load a glTF resource
+		loader.load(
+			// resource URL
+			'Stary_browar_google.glb',
+			// called when the resource is loaded
+			function (gltf) {
+				const bbox = new THREE.Box3().setFromObject(gltf.scene);
+				console.log(
+					`min:${bbox.min.x.toFixed(2)},${bbox.min.y.toFixed(2)},${bbox.min.z.toFixed(
+						2
+					)} -  max:${bbox.max.x.toFixed(2)},${bbox.max.y.toFixed(
+						2
+					)},${bbox.max.z.toFixed(2)}`
+				);
+
+				self.mymesh = gltf.scene;
+				self.mymesh.position.set(-6.5, 0.5, -3);
 				self.scene.add(gltf.scene);
 
 				self.loadingBar.visible = false;
