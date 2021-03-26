@@ -155,7 +155,7 @@ class App {
 		grid.material.transparent = true;
 		this.scene.add(grid);
 
-		this.colliders = [this.roomBox, this.mainUi];
+		this.colliders = [this.roomBox, mainUi];
 	}
 
 	setupVR() {
