@@ -98,7 +98,7 @@ class App {
 		let mainUi = new THREE.Mesh(uiMainGeo, uiMainMat);
 		mainUi.position.set(-0.5, 2, -7);
 
-		let uiSmallGeo = new THREE.PlaneBufferGeometry(4, 3, 32);
+		let uiSmallGeo = new THREE.PlaneBufferGeometry(6, 4.5, 32);
 		let srUI = new THREE.Mesh(
 			uiSmallGeo,
 			new THREE.MeshLambertMaterial({
@@ -107,7 +107,7 @@ class App {
 			})
 		);
 		srUI.rotation.y = Math.PI / -2;
-		srUI.position.set(8.5, 3, -3);
+		srUI.position.set(8.5, 4, -3);
 
 		let srgoogleUI = new THREE.Mesh(
 			uiSmallGeo,
@@ -117,7 +117,7 @@ class App {
 			})
 		);
 		srgoogleUI.rotation.y = Math.PI / -2;
-		srgoogleUI.position.set(8.5, 3, 5);
+		srgoogleUI.position.set(8.5, 4, 5);
 
 		let sbUI = new THREE.Mesh(
 			uiSmallGeo,
@@ -127,7 +127,7 @@ class App {
 			})
 		);
 		sbUI.rotation.y = Math.PI / 2;
-		sbUI.position.set(-10, 3, 4);
+		sbUI.position.set(-10, 4, 4);
 
 		let sbgoogleUI = new THREE.Mesh(
 			uiSmallGeo,
@@ -137,7 +137,7 @@ class App {
 			})
 		);
 		sbgoogleUI.rotation.y = Math.PI / 2;
-		sbgoogleUI.position.set(-10, 3, -3);
+		sbgoogleUI.position.set(-10, 4, -3);
 
 		this.scene.add(mainUi, srUI, srgoogleUI, sbUI, sbgoogleUI);
 
