@@ -24,10 +24,10 @@ class App {
 
 		this.scene = new THREE.Scene();
 		this.scene.background = new THREE.Color(0x505050);
-		this.scene.add(new THREE.HemisphereLight(0xffffff, 0x404040));
+		this.scene.add(new THREE.HemisphereLight(0xffffff, 0xdbdbdb, 0.6));
 
-		const light = new THREE.DirectionalLight(0xffffff);
-		light.position.set(1, 1, 1).normalize();
+		const light = new THREE.DirectionalLight(0xdbdbdb, 0.8);
+		light.position.set(0, 2, 0).normalize();
 		this.scene.add(light);
 
 		this.renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -59,7 +59,6 @@ class App {
 		this.setupVR();
 
 		window.addEventListener('resize', this.resize.bind(this));
-
 		this.renderer.setAnimationLoop(this.render.bind(this));
 	}
 
@@ -177,7 +176,7 @@ class App {
 		this.controller.addEventListener('selectend', onSelectEnd);
 		this.controller.addEventListener('connected', function (event) {
 			const mesh = self.buildController.call(self, event.data);
-			mesh.scale.z = 5;
+			mesh.scale.z = 2;
 			this.add(mesh);
 		});
 		this.controller.addEventListener('disconnected', function () {
@@ -196,7 +195,7 @@ class App {
 		this.controller1.addEventListener('selectend', onSelectEnd);
 		this.controller1.addEventListener('connected', function (event) {
 			const mesh1 = self.buildController.call(self, event.data);
-			mesh1.scale.z = 0;
+			mesh1.scale.z = 2;
 			this.add(mesh1);
 		});
 		this.controller1.addEventListener('disconnected', function () {
@@ -249,7 +248,7 @@ class App {
 				return new THREE.Line(geometry, material);
 
 			case 'gaze':
-				geometry = new THREE.RingBufferGeometry(0.02, 0.04, 32).translate(0, 0, -1);
+				geometry = new THREE.RingBufferGeometry(0.2, 0.4, 32).translate(0, 0, -1);
 				material = new THREE.MeshBasicMaterial({
 					opacity: 0.5,
 					transparent: true,
@@ -337,14 +336,15 @@ class App {
 					)},${bbox.max.z.toFixed(2)}`
 				);
 
-				self.mymesh = gltf.scene;
-				self.mymesh.position.set(5.5, -0.8, 5.5);
+				self.mymesh1 = gltf.scene;
+				self.mymesh1.position.set(5.5, -0.8, 5.5);
 				self.scene.add(gltf.scene);
-
+				self.mymesh1.name = 'sr';
+				console.log(self.mymesh1);
 				self.loadingBar.visible = false;
-				self.colliders.push(self.mymesh);
 				self.renderer.setAnimationLoop(self.render.bind(self));
 			},
+
 			// called while loading is progressing
 			function (xhr) {
 				self.loadingBar.progress = xhr.loaded / xhr.total;
@@ -380,7 +380,7 @@ class App {
 				self.mymesh = gltf.scene;
 				self.mymesh.position.set(5, 0.6, -2.5);
 				self.scene.add(gltf.scene);
-
+				self.mymesh.name = 'srg';
 				self.loadingBar.visible = false;
 				self.colliders.push(self.mymesh);
 				self.renderer.setAnimationLoop(self.render.bind(self));
@@ -421,7 +421,7 @@ class App {
 				self.mymesh.position.set(-5, 0.8, 4);
 				self.mymesh.scale.set(0.01, 0.01, 0.01);
 				self.scene.add(gltf.scene);
-
+				self.mymesh.name = 'sb';
 				self.loadingBar.visible = false;
 				self.colliders.push(self.mymesh);
 				self.renderer.setAnimationLoop(self.render.bind(self));
@@ -461,7 +461,7 @@ class App {
 				self.mymesh = gltf.scene;
 				self.mymesh.position.set(-6.5, 0.5, -3);
 				self.scene.add(gltf.scene);
-
+				self.mymesh.name = 'sbg';
 				self.loadingBar.visible = false;
 				self.colliders.push(self.mymesh);
 				self.renderer.setAnimationLoop(self.render.bind(self));
@@ -488,6 +488,15 @@ class App {
 		this.stats.update();
 		if (this.controller) this.handleController(this.controller, dt);
 		this.renderer.render(this.scene, this.camera);
+
+		// const sr = this.scene.getObjectByName('sr');
+		// const srg = this.scene.getObjectByName('srg');
+		// const sb = this.scene.getObjectByName('sb');
+		// const sbg = this.scene.getObjectByName('sbg');
+		// sr.rotation.y += 0.01;
+		// srg.rotation.y += 0.01;
+		// sb.rotation.y += 0.01;
+		// sbg.rotation.y += 0.01;
 	}
 }
 
