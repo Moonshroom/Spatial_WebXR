@@ -63,7 +63,7 @@ class App {
 	initScene() {
 		this.scene.background = new THREE.Color(0xa0a0a0);
 
-		const boxGeo = new THREE.BoxBufferGeometry(30, 10, 30);
+		const boxGeo = new THREE.BoxBufferGeometry(35, 10, 35);
 		const boxMat = new THREE.MeshLambertMaterial({
 			color: new THREE.Color(0x8f8d8c),
 			side: THREE.BackSide,
@@ -74,14 +74,14 @@ class App {
 
 		// ground
 		const ground = new THREE.Mesh(
-			new THREE.PlaneBufferGeometry(30, 30),
+			new THREE.PlaneBufferGeometry(35, 35),
 			new THREE.MeshPhongMaterial({ color: 0x999999, depthWrite: false })
 		);
 		ground.rotation.x = -Math.PI / 2;
 		this.scene.add(ground);
 
-		let grid = new THREE.GridHelper(30, 30, 0x000000, 0x000000);
-		grid.material.opacity = 0.2;
+		let grid = new THREE.GridHelper(35, 35, 0x000000, 0x000000);
+		grid.material.opacity = 0.1;
 		grid.material.transparent = true;
 		this.scene.add(grid);
 
@@ -117,7 +117,7 @@ class App {
 		this.controller.addEventListener('selectend', onSelectEnd);
 		this.controller.addEventListener('connected', function (event) {
 			const mesh = self.buildController.call(self, event.data);
-			mesh.scale.z = 0;
+			mesh.scale.z = 1;
 			this.add(mesh);
 		});
 		this.controller.addEventListener('disconnected', function () {
@@ -136,7 +136,7 @@ class App {
 		this.controller1.addEventListener('selectend', onSelectEnd);
 		this.controller1.addEventListener('connected', function (event) {
 			const mesh1 = self.buildController.call(self, event.data);
-			mesh1.scale.z = 1.5;
+			mesh1.scale.z = 1;
 			this.add(mesh1);
 		});
 		this.controller1.addEventListener('disconnected', function () {
@@ -191,7 +191,7 @@ class App {
 			case 'gaze':
 				geometry = new THREE.RingBufferGeometry(0.02, 0.04, 32).translate(0, 0, -1);
 				material = new THREE.MeshBasicMaterial({
-					opacity: 0.5,
+					opacity: 0.9,
 					transparent: true,
 				});
 				return new THREE.Mesh(geometry, material);
@@ -265,25 +265,14 @@ class App {
 		// Load a glTF resource
 		loader.load(
 			// resource URL
-			'MPZP_opa50_CRS_test.glb',
+			'MPZP_opa70_CRS.glb',
 			// called when the resource is loaded
 			function (gltf) {
-				const bbox = new THREE.Box3().setFromObject(gltf.scene);
-				console.log(
-					`min:${bbox.min.x.toFixed(2)},${bbox.min.y.toFixed(2)},${bbox.min.z.toFixed(
-						2
-					)} -  max:${bbox.max.x.toFixed(2)},${bbox.max.y.toFixed(
-						2
-					)},${bbox.max.z.toFixed(2)}`
-				);
-
 				self.mymesh = gltf.scene;
 				self.mymesh.position.set(0, 0.3, 0);
-				self.mymesh.scale.set(0.2, 0.2, 0.2);
+				self.mymesh.scale.set(0.3, 0.3, 0.3);
 				self.scene.add(gltf.scene);
-
 				self.loadingBar.visible = false;
-				self.colliders.push(self.mymesh);
 				self.renderer.setAnimationLoop(self.render.bind(self));
 			},
 			// called while loading is progressing

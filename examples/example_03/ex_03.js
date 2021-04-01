@@ -245,37 +245,43 @@ class App {
 		let dracoLoader = new DRACOLoader();
 		dracoLoader.setDecoderPath('../libs/three/js/draco/');
 		loader.setDRACOLoader(dracoLoader);
-		// Load a glTF resource
+
 		loader.load(
-			// resource URL
 			'parkBambrow.glb',
-			// called when the resource is loaded
 			function (gltf) {
-				const bbox = new THREE.Box3().setFromObject(gltf.scene);
-				console.log(
-					`min:${bbox.min.x.toFixed(2)},${bbox.min.y.toFixed(2)},${bbox.min.z.toFixed(
-						2
-					)} -  max:${bbox.max.x.toFixed(2)},${bbox.max.y.toFixed(
-						2
-					)},${bbox.max.z.toFixed(2)}`
-				);
+				// for (let i = 0; i <= 11; i++) {
+				// 	let park = gltf.scene.children[i];
+				// 	self.scene.add(park);
+				// 	park.traverse(function (child) {
+				// 		if (child.isMesh) {
+				// 			if (child.material.name.indexOf('') != -1) {
+				// 				child.material.opacity = 0.1;
+				// 				child.material.transparent = true;
+				// 			} else if (child.material.name.indexOf('') != -1) {
+				// 				const mat1 = child.material;
+				// 				const mat2 = new THREE.MeshBasicMaterial({ map: mat1.map });
+				// 				mat1.dispose();
+				// 			}
+				// 		}
+				// 	});
+				// 	self.loadingBar.visible = false;
+				// 	self.setupVR();
+				// }
 
 				self.mymesh = gltf.scene;
 				self.mymesh.position.set(8, 0.3, 0);
 				self.scene.add(gltf.scene);
-
 				self.loadingBar.visible = false;
-				self.colliders.push(self.mymesh);
 				self.renderer.setAnimationLoop(self.render.bind(self));
 			},
 			// called while loading is progressing
 			function (xhr) {
 				self.loadingBar.progress = xhr.loaded / xhr.total;
-			},
-			// called when loading has errors
-			function (error) {
-				console.log('An error happened');
 			}
+			// called when loading has errors
+			// function (error) {
+			// 	console.log('An error happened');
+			// }
 		);
 	}
 

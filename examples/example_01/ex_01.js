@@ -176,7 +176,7 @@ class App {
 		this.controller.addEventListener('selectend', onSelectEnd);
 		this.controller.addEventListener('connected', function (event) {
 			const mesh = self.buildController.call(self, event.data);
-			mesh.scale.z = 2;
+			mesh.scale.z = 1;
 			this.add(mesh);
 		});
 		this.controller.addEventListener('disconnected', function () {
@@ -195,7 +195,7 @@ class App {
 		this.controller1.addEventListener('selectend', onSelectEnd);
 		this.controller1.addEventListener('connected', function (event) {
 			const mesh1 = self.buildController.call(self, event.data);
-			mesh1.scale.z = 2;
+			mesh1.scale.z = 1;
 			this.add(mesh1);
 		});
 		this.controller1.addEventListener('disconnected', function () {
@@ -250,7 +250,7 @@ class App {
 			case 'gaze':
 				geometry = new THREE.RingBufferGeometry(0.2, 0.4, 32).translate(0, 0, -1);
 				material = new THREE.MeshBasicMaterial({
-					opacity: 0.5,
+					opacity: 0.9,
 					transparent: true,
 				});
 				return new THREE.Mesh(geometry, material);
@@ -265,9 +265,7 @@ class App {
 			pos.y += 1;
 
 			let dir = new THREE.Vector3();
-			//Store original dolly rotation
 			const quaternion = this.dolly.quaternion.clone();
-			//Get rotation for movement from the headset pose
 			this.dolly.quaternion.copy(this.dummyCam.getWorldQuaternion());
 			this.dolly.getWorldDirection(dir);
 			dir.negate();
@@ -324,7 +322,7 @@ class App {
 		// Load a glTF resource
 		loader.load(
 			// resource URL
-			'Rynek_opt.glb',
+			'stary_rynek.glb',
 			// called when the resource is loaded
 			function (gltf) {
 				const bbox = new THREE.Box3().setFromObject(gltf.scene);
@@ -382,7 +380,6 @@ class App {
 				self.scene.add(gltf.scene);
 				self.mymesh.name = 'srg';
 				self.loadingBar.visible = false;
-				self.colliders.push(self.mymesh);
 				self.renderer.setAnimationLoop(self.render.bind(self));
 			},
 			// called while loading is progressing
@@ -423,7 +420,6 @@ class App {
 				self.scene.add(gltf.scene);
 				self.mymesh.name = 'sb';
 				self.loadingBar.visible = false;
-				self.colliders.push(self.mymesh);
 				self.renderer.setAnimationLoop(self.render.bind(self));
 			},
 			// called while loading is progressing
@@ -463,7 +459,6 @@ class App {
 				self.scene.add(gltf.scene);
 				self.mymesh.name = 'sbg';
 				self.loadingBar.visible = false;
-				self.colliders.push(self.mymesh);
 				self.renderer.setAnimationLoop(self.render.bind(self));
 			},
 			// called while loading is progressing
@@ -488,15 +483,6 @@ class App {
 		this.stats.update();
 		if (this.controller) this.handleController(this.controller, dt);
 		this.renderer.render(this.scene, this.camera);
-
-		// const sr = this.scene.getObjectByName('sr');
-		// const srg = this.scene.getObjectByName('srg');
-		// const sb = this.scene.getObjectByName('sb');
-		// const sbg = this.scene.getObjectByName('sbg');
-		// sr.rotation.y += 0.01;
-		// srg.rotation.y += 0.01;
-		// sb.rotation.y += 0.01;
-		// sbg.rotation.y += 0.01;
 	}
 }
 
