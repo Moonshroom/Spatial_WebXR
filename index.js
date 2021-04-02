@@ -29,7 +29,7 @@ arElement.addEventListener('click', loadARexamples);
 
 //app version
 let appVersion = document.getElementById('app-version');
-appVersion.innerHTML = '0.2.0';
+appVersion.innerHTML = '0.5.0';
 
 //VR examples navigation
 let loadVrExOne = () => {
@@ -50,6 +50,12 @@ let loadVrExThree = () => {
 	}
 };
 
+let loadVrExFour = () => {
+	if (window.location.pathname !== '/examples/example_04/ex_04.html') {
+		window.location = '/Spatial_WebXR/examples/example_04/ex_04.html';
+	}
+};
+
 let btnVrOne;
 btnVrOne = document.getElementById('btn-enterVR-one');
 btnVrOne.addEventListener('click', loadVrExOne);
@@ -61,3 +67,7 @@ btnVrTwo.addEventListener('click', loadVrExTwo);
 let btnVrThree;
 btnVrThree = document.getElementById('btn-enterVR-three');
 btnVrThree.addEventListener('click', loadVrExThree);
+
+let btnVrFour;
+btnVrFour = document.getElementById('btn-enterVR-four');
+btnVrFour.addEventListener('click', loadVrExFour);

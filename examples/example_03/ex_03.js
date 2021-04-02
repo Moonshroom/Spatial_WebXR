@@ -249,25 +249,6 @@ class App {
 		loader.load(
 			'parkBambrow.glb',
 			function (gltf) {
-				// for (let i = 0; i <= 11; i++) {
-				// 	let park = gltf.scene.children[i];
-				// 	self.scene.add(park);
-				// 	park.traverse(function (child) {
-				// 		if (child.isMesh) {
-				// 			if (child.material.name.indexOf('') != -1) {
-				// 				child.material.opacity = 0.1;
-				// 				child.material.transparent = true;
-				// 			} else if (child.material.name.indexOf('') != -1) {
-				// 				const mat1 = child.material;
-				// 				const mat2 = new THREE.MeshBasicMaterial({ map: mat1.map });
-				// 				mat1.dispose();
-				// 			}
-				// 		}
-				// 	});
-				// 	self.loadingBar.visible = false;
-				// 	self.setupVR();
-				// }
-
 				self.mymesh = gltf.scene;
 				self.mymesh.position.set(8, 0.3, 0);
 				self.scene.add(gltf.scene);
@@ -277,11 +258,11 @@ class App {
 			// called while loading is progressing
 			function (xhr) {
 				self.loadingBar.progress = xhr.loaded / xhr.total;
-			}
+			},
 			// called when loading has errors
-			// function (error) {
-			// 	console.log('An error happened');
-			// }
+			function (error) {
+				console.log('An error happened');
+			}
 		);
 	}
 
