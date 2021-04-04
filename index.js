@@ -29,7 +29,7 @@ arElement.addEventListener('click', loadARexamples);
 
 //app version
 let appVersion = document.getElementById('app-version');
-appVersion.innerHTML = '0.5.0';
+appVersion.innerHTML = '0.7.2';
 
 //VR examples navigation
 let loadVrExOne = () => {
