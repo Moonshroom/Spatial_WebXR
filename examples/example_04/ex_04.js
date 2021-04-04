@@ -65,21 +65,20 @@ class App {
 		this.scene.background = new THREE.Color(0xc4f4ff);
 		// this.scene.fog = new THREE.Fog(new THREE.Color(0xbad9e0), 0.0025, 100);
 
-		// ground
-		// const ground = new THREE.Mesh(
-		// 	new THREE.PlaneBufferGeometry(30, 30),
-		// 	new THREE.MeshPhongMaterial({ color: 0x999999, depthWrite: false })
-		// );
+		const ground = new THREE.Mesh(
+			new THREE.PlaneBufferGeometry(500, 700),
+			new THREE.MeshPhongMaterial({
+				color: 0x999999,
+				depthWrite: true,
+				side: THREE.FrontSide,
+			})
+		);
 		// ground.rotation.x = -Math.PI / 2;
-		// this.scene.add(ground);
+		ground.rotateX(THREE.Math.degToRad(89));
+		ground.position.set(50, 1, 0);
+		this.scene.add(ground);
 
-		// let grid = new THREE.GridHelper(30, 30, 0x000000, 0x000000);
-		// grid.material.opacity = 0.2;
-		// grid.material.transparent = true;
-		// this.scene.add(grid);
-		let sr = this.scene.getObjectByName('BuildingMesh-00059001');
-		console.log(sr);
-		this.colliders = [];
+		this.colliders = [ground];
 	}
 
 	setupVR() {
@@ -186,7 +185,8 @@ class App {
 	handleController(controller, dt) {
 		if (controller.userData.selectPressed) {
 			const wallLimit = 1.5;
-			const speed = 10;
+			const groundLimit = 1.5;
+			const speed = 5;
 			let pos = this.dolly.position.clone();
 			pos.y += 1;
 
@@ -235,15 +235,20 @@ class App {
 					this.dolly.translateX(intersect[0].distance - wallLimit);
 			}
 
-			// dir.set(0, -1, 0);
-			// pos.y += 1.5;
-			// this.raycaster.set(pos, dir);
+			dir.set(0, -1, 0);
+			pos.y += 1.5;
+			this.raycaster.set(pos, dir);
 
-			// intersect = this.raycaster.intersectObject();
+			intersect = this.raycaster.intersectObjects(this.colliders);
+			if (intersect.length > 0) {
+				this.dolly.position.copy(intersect[0].point);
+			}
 			// if (intersect.length > 0) {
-			// 	this.dolly.position.copy(intersect[0].point);
+			// 	if (intersect[0].distance > groundLimit) {
+			// 		this.dolly.position.y = intersect[0] + groundLimit;
+			// 	}
 			// }
-			this.dolly.position.y = 0;
+			// this.dolly.position.y = 0;
 
 			//Restore the original rotation
 			this.dolly.quaternion.copy(quaternion);
