@@ -18,7 +18,7 @@ class App {
 			75,
 			window.innerWidth / window.innerHeight,
 			0.1,
-			200
+			1000
 		);
 		this.camera.position.set(0, 1.6, 5);
 
@@ -64,20 +64,20 @@ class App {
 		this.scene.background = new THREE.Color(0xc4f4ff);
 		// this.scene.fog = new THREE.Fog(new THREE.Color(0xbad9e0), 0.0025, 100);
 
-		// ground
-		// const ground = new THREE.Mesh(
-		// 	new THREE.PlaneBufferGeometry(30, 30),
-		// 	new THREE.MeshPhongMaterial({ color: 0x999999, depthWrite: false })
-		// );
-		// ground.rotation.x = -Math.PI / 2;
-		// this.scene.add(ground);
+		const skyBox = new THREE.Mesh(
+			new THREE.SphereBufferGeometry(200, 64, 64),
+			new THREE.MeshLambertMaterial({
+				map: new THREE.TextureLoader().load('./assets/Daylight_Box.png'),
+				side: THREE.DoubleSide,
+			})
+		);
+		skyBox.name = 'skyBox';
+		const skyLight = new THREE.DirectionalLight(0xffffff);
+		skyLight.position.set(0, -20, 0).normalize();
+		skyBox.add(skyLight);
+		this.scene.add(skyBox);
 
-		// let grid = new THREE.GridHelper(30, 30, 0x000000, 0x000000);
-		// grid.material.opacity = 0.2;
-		// grid.material.transparent = true;
-		// this.scene.add(grid);
-
-		this.colliders = [];
+		this.colliders = [skyBox];
 	}
 
 	setupVR() {
@@ -276,6 +276,7 @@ class App {
 		const dt = this.clock.getDelta();
 		this.stats.update();
 		if (this.controller) this.handleController(this.controller, dt);
+		this.scene.getObjectByName('skyBox').rotation.y += 0.0001;
 		this.renderer.render(this.scene, this.camera);
 	}
 }

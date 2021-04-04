@@ -25,10 +25,10 @@ class App {
 
 		this.scene = new THREE.Scene();
 		this.scene.background = new THREE.Color(0x505050);
-		this.scene.add(new THREE.HemisphereLight(0xa2eba2, 0x404040));
+		this.scene.add(new THREE.HemisphereLight(0xffffbb, 0x080820, 1));
 
 		const light = new THREE.DirectionalLight(0xffffff);
-		light.position.set(1, 1, 1).normalize();
+		light.position.set(1, 20, 1).normalize();
 		this.scene.add(light);
 
 		this.renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -64,21 +64,49 @@ class App {
 	initScene() {
 		this.scene.background = new THREE.Color(0xc4f4ff);
 		// this.scene.fog = new THREE.Fog(new THREE.Color(0xbad9e0), 0.0025, 100);
+		const skyBox = new THREE.Mesh(
+			new THREE.SphereBufferGeometry(500, 64, 64),
+			new THREE.MeshLambertMaterial({
+				map: new THREE.TextureLoader().load('./assets/Daylight_Box.png'),
+				side: THREE.DoubleSide,
+			})
+		);
+		skyBox.name = 'skyBox';
+		const skyLight = new THREE.DirectionalLight(0xffffff);
+		skyLight.position.set(0, -20, 0).normalize();
+		skyBox.add(skyLight);
+		this.scene.add(skyBox);
 
 		const ground = new THREE.Mesh(
-			new THREE.PlaneBufferGeometry(500, 700),
+			new THREE.PlaneBufferGeometry(500, 500),
 			new THREE.MeshPhongMaterial({
 				color: 0x999999,
 				depthWrite: true,
-				side: THREE.FrontSide,
+				opacity: 0.1,
+				transparent: true,
+				side: THREE.BackSide,
 			})
 		);
 		// ground.rotation.x = -Math.PI / 2;
-		ground.rotateX(THREE.Math.degToRad(89));
-		ground.position.set(50, 1, 0);
-		this.scene.add(ground);
+		ground.rotateX(THREE.Math.degToRad(87.5));
+		ground.position.set(50, 1.5, 70);
 
-		this.colliders = [ground];
+		const groundFlat = new THREE.Mesh(
+			new THREE.PlaneBufferGeometry(500, 800),
+			new THREE.MeshPhongMaterial({
+				color: 0x999999,
+				depthWrite: true,
+				opacity: 0.1,
+				transparent: true,
+				side: THREE.BackSide,
+			})
+		);
+
+		groundFlat.position.set(0, 0, 0);
+		groundFlat.rotateX(THREE.Math.degToRad(2));
+		ground.add(groundFlat);
+		this.scene.add(ground);
+		this.colliders = [groundFlat, ground, skyBox];
 	}
 
 	setupVR() {
@@ -185,8 +213,7 @@ class App {
 	handleController(controller, dt) {
 		if (controller.userData.selectPressed) {
 			const wallLimit = 1.5;
-			const groundLimit = 1.5;
-			const speed = 5;
+			const speed = 10;
 			let pos = this.dolly.position.clone();
 			pos.y += 1;
 
@@ -235,7 +262,7 @@ class App {
 					this.dolly.translateX(intersect[0].distance - wallLimit);
 			}
 
-			dir.set(0, -1, 0);
+			dir.set(0, -2, 0);
 			pos.y += 1.5;
 			this.raycaster.set(pos, dir);
 
@@ -243,14 +270,6 @@ class App {
 			if (intersect.length > 0) {
 				this.dolly.position.copy(intersect[0].point);
 			}
-			// if (intersect.length > 0) {
-			// 	if (intersect[0].distance > groundLimit) {
-			// 		this.dolly.position.y = intersect[0] + groundLimit;
-			// 	}
-			// }
-			// this.dolly.position.y = 0;
-
-			//Restore the original rotation
 			this.dolly.quaternion.copy(quaternion);
 		}
 	}
@@ -265,7 +284,7 @@ class App {
 			'stary_rynek__google.glb',
 			function (gltf) {
 				self.mymesh = gltf.scene;
-				self.mymesh.position.set(0, -7, 0);
+				self.mymesh.position.set(0, -9, 0);
 				self.mymesh.scale.set(100, 100, 100);
 				console.log(self.mymesh);
 				self.mymesh.name = 'sr';
@@ -293,6 +312,7 @@ class App {
 	render() {
 		const dt = this.clock.getDelta();
 		if (this.controller) this.handleController(this.controller, dt);
+		this.scene.getObjectByName('skyBox').rotation.y += 0.0001;
 		this.renderer.render(this.scene, this.camera);
 	}
 }
