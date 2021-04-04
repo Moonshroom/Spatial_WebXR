@@ -72,13 +72,14 @@ class App {
 			})
 		);
 		skyBox.name = 'skyBox';
+		skyBox.position.set(0, 0, -100);
 		const skyLight = new THREE.DirectionalLight(0xffffff);
-		skyLight.position.set(0, -20, 0).normalize();
+		skyLight.position.set(0, 0, -100).normalize();
 		skyBox.add(skyLight);
 		this.scene.add(skyBox);
 
 		const ground = new THREE.Mesh(
-			new THREE.PlaneBufferGeometry(500, 500),
+			new THREE.PlaneBufferGeometry(500, 150),
 			new THREE.MeshPhongMaterial({
 				color: 0x999999,
 				depthWrite: true,
@@ -281,7 +282,7 @@ class App {
 		loader.setDRACOLoader(dracoLoader);
 
 		loader.load(
-			'stary_rynek__google.glb',
+			'stary_rynek.glb',
 			function (gltf) {
 				self.mymesh = gltf.scene;
 				self.mymesh.position.set(0, -9, 0);
