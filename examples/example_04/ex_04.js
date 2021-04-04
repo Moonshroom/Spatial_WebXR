@@ -73,8 +73,8 @@ class App {
 		);
 		skyBox.name = 'skyBox';
 		skyBox.position.set(0, 0, -100);
-		const skyLight = new THREE.DirectionalLight(0xffffff);
-		skyLight.position.set(0, 0, -100).normalize();
+		const skyLight = new THREE.DirectionalLight(0xffffff, 0.5);
+		skyLight.position.set(0, 0, 0).normalize();
 		skyBox.add(skyLight);
 		this.scene.add(skyBox);
 
@@ -130,7 +130,7 @@ class App {
 		this.controller.addEventListener('selectend', onSelectEnd);
 		this.controller.addEventListener('connected', function (event) {
 			const mesh = self.buildController.call(self, event.data);
-			mesh.scale.z = 0;
+			mesh.scale.z = 1.5;
 			this.add(mesh);
 		});
 		this.controller.addEventListener('disconnected', function () {
