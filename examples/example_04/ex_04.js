@@ -51,7 +51,7 @@ class App {
 
 		//loading models
 		this.loadingBar = new LoadingBar();
-		this.loadPB();
+		this.loadSRVW();
 
 		this.initScene();
 		this.setupVR();
@@ -274,7 +274,7 @@ class App {
 			this.dolly.quaternion.copy(quaternion);
 		}
 	}
-	loadPB() {
+	loadSRVW() {
 		const loader = new GLTFLoader().setPath('./assets/');
 		const self = this;
 		let dracoLoader = new DRACOLoader();
@@ -282,7 +282,7 @@ class App {
 		loader.setDRACOLoader(dracoLoader);
 
 		loader.load(
-			'stary_rynek.glb',
+			'Stary_rynek.glb',
 			function (gltf) {
 				self.mymesh = gltf.scene;
 				self.mymesh.position.set(0, -9, 0);
