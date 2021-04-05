@@ -79,35 +79,48 @@ class App {
 		this.scene.add(skyBox);
 
 		const ground = new THREE.Mesh(
-			new THREE.PlaneBufferGeometry(500, 150),
+			new THREE.PlaneBufferGeometry(500, 30),
 			new THREE.MeshPhongMaterial({
 				color: 0x999999,
 				depthWrite: true,
-				opacity: 0.1,
+				opacity: 0.01,
 				transparent: true,
 				side: THREE.BackSide,
 			})
 		);
 		// ground.rotation.x = -Math.PI / 2;
 		ground.rotateX(THREE.Math.degToRad(87.5));
-		ground.position.set(50, 1.5, 70);
+		ground.position.set(50, 1.5, 0);
 
 		const groundFlat = new THREE.Mesh(
 			new THREE.PlaneBufferGeometry(500, 800),
 			new THREE.MeshPhongMaterial({
 				color: 0x999999,
 				depthWrite: true,
-				opacity: 0.1,
+				opacity: 0.01,
 				transparent: true,
 				side: THREE.BackSide,
 			})
 		);
 
-		groundFlat.position.set(0, 0, 0);
+		groundFlat.position.set(0, -10, 0);
 		groundFlat.rotateX(THREE.Math.degToRad(2));
 		ground.add(groundFlat);
 		this.scene.add(ground);
-		this.colliders = [groundFlat, ground, skyBox];
+
+		const walls = new THREE.Mesh(
+			new THREE.BoxBufferGeometry(500, 100, 500),
+			new THREE.MeshPhongMaterial({
+				color: 0xffffff,
+				depthWrite: true,
+				opacity: 0.01,
+				transparent: true,
+				side: THREE.BackSide,
+			})
+		);
+		walls.position.set(50, 0, -100);
+		this.scene.add(walls);
+		this.colliders = [groundFlat, ground, skyBox, walls];
 	}
 
 	setupVR() {
