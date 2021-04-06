@@ -120,6 +120,17 @@ class App {
 		);
 		walls.position.set(50, 0, -100);
 		this.scene.add(walls);
+
+		let uiMainGeo = new THREE.PlaneBufferGeometry(5, 4.8, 32);
+		let uiMainMat = new THREE.MeshLambertMaterial({
+			map: new THREE.TextureLoader().load('./assets/mainUI.png'),
+			side: THREE.FrontSide,
+		});
+
+		let mainUi = new THREE.Mesh(uiMainGeo, uiMainMat);
+		mainUi.position.set(0, 2, -5);
+		this.scene.add(mainUi);
+
 		this.colliders = [groundFlat, ground, skyBox, walls];
 	}
 

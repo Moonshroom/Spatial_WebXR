@@ -77,6 +77,17 @@ class App {
 		skyBox.add(skyLight);
 		this.scene.add(skyBox);
 
+		let uiMainGeo = new THREE.PlaneBufferGeometry(2.5, 2.4, 32);
+		let uiMainMat = new THREE.MeshLambertMaterial({
+			map: new THREE.TextureLoader().load('./assets/mainUI.png'),
+			side: THREE.FrontSide,
+		});
+
+		let mainUi = new THREE.Mesh(uiMainGeo, uiMainMat);
+		mainUi.position.set(4, 2, 4);
+		mainUi.rotation.y = -Math.PI / 2;
+		this.scene.add(mainUi);
+
 		this.colliders = [skyBox];
 	}
 
@@ -184,7 +195,7 @@ class App {
 	handleController(controller, dt) {
 		if (controller.userData.selectPressed) {
 			const wallLimit = 1.5;
-			const speed = 2;
+			const speed = 3;
 			let pos = this.dolly.position.clone();
 			pos.y += 1;
 
