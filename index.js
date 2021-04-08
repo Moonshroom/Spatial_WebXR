@@ -29,8 +29,10 @@ arElement.addEventListener('click', loadARexamples);
 
 //app version
 let appVersion = document.getElementById('app-version');
-appVersion.innerHTML = '0.7.2';
-
+appVersion.innerHTML = '0.8.2';
+let mail = document.getElementById('menu-wrapper-contact');
+mail.innerHTML = 'mateuszorylski@gmail.com';
+mail.appendChild(appVersion);
 //VR examples navigation
 let loadVrExOne = () => {
 	if (window.location.pathname !== '/examples/example_01/ex_01.html') {
