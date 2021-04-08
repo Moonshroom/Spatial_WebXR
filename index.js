@@ -30,9 +30,6 @@ arElement.addEventListener('click', loadARexamples);
 //app version
 let appVersion = document.getElementById('app-version');
 appVersion.innerHTML = '0.8.2';
-let mail = document.getElementById('menu-wrapper-contact');
-mail.innerHTML = 'mateuszorylski@gmail.com';
-mail.appendChild(appVersion);
 //VR examples navigation
 let loadVrExOne = () => {
 	if (window.location.pathname !== '/examples/example_01/ex_01.html') {
@@ -58,18 +55,37 @@ let loadVrExFour = () => {
 	}
 };
 
-let btnVrOne;
-btnVrOne = document.getElementById('btn-enterVR-one');
-btnVrOne.addEventListener('click', loadVrExOne);
+let loadArExTwo = () => {
+	if (window.location.pathname !== '/examples/example_06/ex_06.html') {
+		window.location = '/Spatial_WebXR/examples/example_06/ex_06.html';
+	}
+};
 
-let btnVrTwo;
-btnVrTwo = document.getElementById('btn-enterVR-two');
-btnVrTwo.addEventListener('click', loadVrExTwo);
+if (
+	window.location.pathname == '/VR_index.html' ||
+	window.location.pathname == '/Spatial_WebXR/VR_index.html'
+) {
+	let btnVrOne;
+	btnVrOne = document.getElementById('btn-enterVR-one');
+	btnVrOne.addEventListener('click', loadVrExOne);
 
-let btnVrThree;
-btnVrThree = document.getElementById('btn-enterVR-three');
-btnVrThree.addEventListener('click', loadVrExThree);
+	let btnVrTwo;
+	btnVrTwo = document.getElementById('btn-enterVR-two');
+	btnVrTwo.addEventListener('click', loadVrExTwo);
 
-let btnVrFour;
-btnVrFour = document.getElementById('btn-enterVR-four');
-btnVrFour.addEventListener('click', loadVrExFour);
+	let btnVrThree;
+	btnVrThree = document.getElementById('btn-enterVR-three');
+	btnVrThree.addEventListener('click', loadVrExThree);
+
+	let btnVrFour;
+	btnVrFour = document.getElementById('btn-enterVR-four');
+	btnVrFour.addEventListener('click', loadVrExFour);
+}
+
+if (
+	window.location.pathname == '/AR_index.html' ||
+	window.location.pathname == '/Spatial_WebXR/AR_index.html'
+) {
+	let btnArTwo = document.getElementById('btn-enterAR-two');
+	btnArTwo.addEventListener('click', loadArExTwo);
+}
