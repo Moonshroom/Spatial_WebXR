@@ -1,6 +1,3 @@
 # Auto detect text files and perform LF normalization
 * text=auto
-* examples\example_01\ex_01.js linguist-detectable
-* examples\example_02\ex_02.js linguist-detectable
-* examples\example_03\ex_03.js linguist-detectable
-* examples\example_04\ex_04.js linguist-detectable
+* examples/ linguist-detectable
