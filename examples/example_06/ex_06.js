@@ -20,7 +20,6 @@ class App {
 		const ambient = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 2);
 		ambient.position.set(0.5, 1, 0.25);
 		this.scene.add(ambient);
-
 		const light = new THREE.DirectionalLight();
 		light.position.set(0.2, 1, 1);
 		this.scene.add(light);
@@ -117,6 +116,26 @@ class App {
 		this.reticle = this.initReticle();
 
 		this.scene.add(this.reticle);
+
+		const loader = new THREE.FontLoader();
+
+		loader.load('fonts/gentilis_regular.typeface.json', function (font) {
+			let TextGeometry = new THREE.TextGeometry('Welcome to Measure', {
+				font: font,
+				size: 80,
+				height: 5,
+				curveSegments: 12,
+				bevelEnabled: true,
+				bevelThickness: 10,
+				bevelSize: 8,
+				bevelOffset: 0,
+				bevelSegments: 5,
+			});
+		});
+		let textMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
+		let text = new THREE.Mesh(this.TextGeometry, this.textMaterial);
+		text.position.set(0, 1.5, 2);
+		this.scene.add(text);
 	}
 
 	setupXR() {
