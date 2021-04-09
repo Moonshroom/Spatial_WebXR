@@ -116,26 +116,6 @@ class App {
 		this.reticle = this.initReticle();
 
 		this.scene.add(this.reticle);
-
-		const loader = new THREE.FontLoader();
-
-		loader.load('fonts/gentilis_regular.typeface.json', function (font) {
-			let TextGeometry = new THREE.TextGeometry('Welcome to Measure', {
-				font: font,
-				size: 80,
-				height: 5,
-				curveSegments: 12,
-				bevelEnabled: true,
-				bevelThickness: 10,
-				bevelSize: 8,
-				bevelOffset: 0,
-				bevelSegments: 5,
-			});
-		});
-		let textMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
-		let text = new THREE.Mesh(this.TextGeometry, this.textMaterial);
-		text.position.set(0, 1.5, 2);
-		this.scene.add(text);
 	}
 
 	setupXR() {

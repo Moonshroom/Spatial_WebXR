@@ -17,13 +17,21 @@ class ARButton {
 		if ('xr' in navigator) {
 			const button = document.createElement('button');
 			button.style.display = 'none';
-			button.style.height = '15%';
-
+			const welcomeDM = document.createElement('a');
+			this.stylizeElement(welcomeDM, true, '25px', false);
+			welcomeDM.innerHTML =
+				'After doubleclick on camera icon, point floor until You see white circle, then tap your screen to start measuring';
+			welcomeDM.style.top = '1px';
+			welcomeDM.style.textAlign = 'center';
+			welcomeDM.style.fontSize = '25px';
+			welcomeDM.style.width = '100vw';
+			welcomeDM.style.height = '50px';
 			navigator.xr.isSessionSupported('immersive-ar').then((supported) => {
 				supported ? this.showStartAR(button) : this.showARNotSupported(button);
 			});
 
 			document.body.appendChild(button);
+			document.body.appendChild(welcomeDM);
 		} else {
 			const message = document.createElement('a');
 
