@@ -17,7 +17,7 @@ class ARButton {
 		if ('xr' in navigator) {
 			const button = document.createElement('button');
 			button.style.display = 'none';
-			button.style.height = '40px';
+			button.style.height = '15%';
 
 			navigator.xr.isSessionSupported('immersive-ar').then((supported) => {
 				supported ? this.showStartAR(button) : this.showARNotSupported(button);
@@ -51,14 +51,14 @@ class ARButton {
 		let currentSession = null;
 		const self = this;
 
-		this.stylizeElement(button, true, 30, true);
+		this.stylizeElement(button, true, 75, true);
 
 		function onSessionStarted(session) {
 			session.addEventListener('end', onSessionEnded);
 
 			self.renderer.xr.setReferenceSpaceType('local');
 			self.renderer.xr.setSession(session);
-			self.stylizeElement(button, false, 12, true);
+			self.stylizeElement(button, false, 75, true);
 
 			button.textContent = 'STOP AR';
 
@@ -71,7 +71,7 @@ class ARButton {
 		function onSessionEnded() {
 			currentSession.removeEventListener('end', onSessionEnded);
 
-			self.stylizeElement(button, true, 12, true);
+			self.stylizeElement(button, true, 75, true);
 			button.textContent = 'START AR';
 
 			currentSession = null;
@@ -83,18 +83,18 @@ class ARButton {
 
 		button.style.display = '';
 		button.style.right = '20px';
-		button.style.width = '80px';
+		button.style.width = '250px';
 		button.style.cursor = 'pointer';
 		button.innerHTML = '<i class="fas fa-camera"></i>';
 
 		button.onmouseenter = function () {
-			button.style.fontSize = '12px';
+			button.style.fontSize = '25px';
 			button.textContent = currentSession === null ? 'START AR' : 'STOP AR';
 			button.style.opacity = '1.0';
 		};
 
 		button.onmouseleave = function () {
-			button.style.fontSize = '30px';
+			button.style.fontSize = '75px';
 			button.innerHTML = '<i class="fas fa-camera"></i>';
 			button.style.opacity = '0.5';
 		};
@@ -134,15 +134,15 @@ class ARButton {
 
 		button.style.display = '';
 		button.style.width = '100%';
-		button.style.right = '0px';
-		button.style.bottom = '0px';
+		button.style.right = '10px';
+		button.style.bottom = '10px';
 		button.style.border = '';
 		button.style.opacity = '1';
-		button.style.fontSize = '13px';
+		button.style.fontSize = '75px';
 		button.textContent = 'AR NOT SUPPORTED';
 	}
 
-	stylizeElement(element, active = true, fontSize = 13, ignorePadding = false) {
+	stylizeElement(element, active = true, fontSize = 75, ignorePadding = false) {
 		element.style.position = 'absolute';
 		element.style.bottom = '20px';
 		if (!ignorePadding) element.style.padding = '12px 6px';
