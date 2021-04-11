@@ -25,7 +25,7 @@ class ARButton {
 			welcomeDM.style.textAlign = 'center';
 			welcomeDM.style.fontSize = '25px';
 			welcomeDM.style.width = '100vw';
-			welcomeDM.style.height = '100px';
+			welcomeDM.style.height = '120px';
 			navigator.xr.isSessionSupported('immersive-ar').then((supported) => {
 				supported ? this.showStartAR(button) : this.showARNotSupported(button);
 			});

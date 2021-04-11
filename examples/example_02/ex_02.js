@@ -117,7 +117,7 @@ class App {
 		this.controller.addEventListener('selectend', onSelectEnd);
 		this.controller.addEventListener('connected', function (event) {
 			const mesh = self.buildController.call(self, event.data);
-			mesh.scale.z = 1;
+			mesh.scale.z = 1.5;
 			this.add(mesh);
 		});
 		this.controller.addEventListener('disconnected', function () {
@@ -136,7 +136,7 @@ class App {
 		this.controller1.addEventListener('selectend', onSelectEnd);
 		this.controller1.addEventListener('connected', function (event) {
 			const mesh1 = self.buildController.call(self, event.data);
-			mesh1.scale.z = 1;
+			mesh1.scale.z = 1.5;
 			this.add(mesh1);
 		});
 		this.controller1.addEventListener('disconnected', function () {
@@ -296,6 +296,7 @@ class App {
 		const dt = this.clock.getDelta();
 		this.stats.update();
 		if (this.controller) this.handleController(this.controller, dt);
+		if (this.controller1) this.handleController(this.controller1, dt);
 		this.renderer.render(this.scene, this.camera);
 	}
 }

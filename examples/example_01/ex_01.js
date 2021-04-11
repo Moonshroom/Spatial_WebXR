@@ -482,6 +482,7 @@ class App {
 		const dt = this.clock.getDelta();
 		this.stats.update();
 		if (this.controller) this.handleController(this.controller, dt);
+		if (this.controller1) this.handleController(this.controller1, dt);
 		this.renderer.render(this.scene, this.camera);
 	}
 }

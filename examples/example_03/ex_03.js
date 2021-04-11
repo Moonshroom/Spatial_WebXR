@@ -111,7 +111,7 @@ class App {
 		this.controller.addEventListener('selectend', onSelectEnd);
 		this.controller.addEventListener('connected', function (event) {
 			const mesh = self.buildController.call(self, event.data);
-			mesh.scale.z = 0;
+			mesh.scale.z = 1.5;
 			this.add(mesh);
 		});
 		this.controller.addEventListener('disconnected', function () {
@@ -195,7 +195,7 @@ class App {
 	handleController(controller, dt) {
 		if (controller.userData.selectPressed) {
 			const wallLimit = 1.5;
-			const speed = 3;
+			const speed = 2;
 			let pos = this.dolly.position.clone();
 			pos.y += 1;
 
@@ -287,6 +287,7 @@ class App {
 		const dt = this.clock.getDelta();
 		this.stats.update();
 		if (this.controller) this.handleController(this.controller, dt);
+		if (this.controller1) this.handleController(this.controller1, dt);
 		this.scene.getObjectByName('skyBox').rotation.y += 0.0001;
 		this.renderer.render(this.scene, this.camera);
 	}

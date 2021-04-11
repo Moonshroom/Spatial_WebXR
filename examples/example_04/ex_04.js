@@ -238,7 +238,7 @@ class App {
 	handleController(controller, dt) {
 		if (controller.userData.selectPressed) {
 			const wallLimit = 1.5;
-			const speed = 10;
+			const speed = 5;
 			let pos = this.dolly.position.clone();
 			pos.y += 1;
 
@@ -337,6 +337,7 @@ class App {
 	render() {
 		const dt = this.clock.getDelta();
 		if (this.controller) this.handleController(this.controller, dt);
+		if (this.controller1) this.handleController(this.controller1, dt);
 		this.scene.getObjectByName('skyBox').rotation.y += 0.0001;
 		this.renderer.render(this.scene, this.camera);
 	}
