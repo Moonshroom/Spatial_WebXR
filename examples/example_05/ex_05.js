@@ -1,13 +1,18 @@
 import * as THREE from '../libs/three/three.module.js';
 import { GLTFLoader } from '../libs/three/jsm/GLTFLoader.js';
+import { DRACOLoader } from '../libs/three/jsm/DRACOLoader.js';
 import { RGBELoader } from '../libs/three/jsm/RGBELoader.js';
 import { LoadingBar } from '../libs/LoadingBar.js';
 import { ARButton } from '../libs/ARButton.js';
-import { BufferGeometryUtils } from '../libs/three/jsm/BufferGeometryUtils.js';
+
 class App {
 	constructor() {
 		const container = document.createElement('div');
 		document.body.appendChild(container);
+
+		this.clock = new THREE.Clock();
+
+		this.loadingBar = new LoadingBar();
 
 		this.camera = new THREE.PerspectiveCamera(
 			70,
@@ -15,13 +20,14 @@ class App {
 			0.01,
 			20
 		);
-		this.camera.position.set(0, 1.6, 3);
+		this.camera.position.set(0, 0, 0);
 
 		this.scene = new THREE.Scene();
 
 		const ambient = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 2);
 		ambient.position.set(0.5, 1, 0.25);
 		this.scene.add(ambient);
+
 		const light = new THREE.DirectionalLight();
 		light.position.set(0.2, 1, 1);
 		this.scene.add(light);
@@ -31,25 +37,36 @@ class App {
 		this.renderer.setSize(window.innerWidth, window.innerHeight);
 		this.renderer.outputEncoding = THREE.sRGBEncoding;
 		container.appendChild(this.renderer.domElement);
-
-		const labelContainer = document.createElement('div');
-		labelContainer.style.position = 'absolute';
-		labelContainer.style.top = '0px';
-		labelContainer.style.pointerEvents = 'none';
-		labelContainer.setAttribute('id', 'container');
-		container.appendChild(labelContainer);
-		this.labelContainer = labelContainer;
+		this.setEnvironment();
 
 		this.workingVec3 = new THREE.Vector3();
-		this.labels = [];
-		this.measurements = [];
 
 		this.initScene();
 		this.setupXR();
 
-		this.renderer.setAnimationLoop(this.render.bind(this));
-
 		window.addEventListener('resize', this.resize.bind(this));
+	}
+
+	setEnvironment() {
+		const loader = new RGBELoader().setDataType(THREE.UnsignedByteType);
+		const pmremGenerator = new THREE.PMREMGenerator(this.renderer);
+		pmremGenerator.compileEquirectangularShader();
+
+		const self = this;
+
+		loader.load(
+			'./assets/venice_sunset_1k.hdr',
+			(texture) => {
+				const envMap = pmremGenerator.fromEquirectangular(texture).texture;
+				pmremGenerator.dispose();
+
+				self.scene.environment = envMap;
+			},
+			undefined,
+			(err) => {
+				console.error('An error occurred setting the environment');
+			}
+		);
 	}
 
 	resize() {
@@ -58,106 +75,57 @@ class App {
 		this.renderer.setSize(window.innerWidth, window.innerHeight);
 	}
 
-	getCenterPoint(points) {
-		let line = new THREE.Line3(...points);
-		return line.getCenter(new THREE.Vector3());
-	}
-
-	initLine(point) {
-		const lineMaterial = new THREE.LineBasicMaterial({
-			color: 0xffffff,
-			linewidth: 5,
-			linecap: 'round',
-		});
-
-		const lineGeometry = new THREE.BufferGeometry().setFromPoints([point, point]);
-		return new THREE.Line(lineGeometry, lineMaterial);
-	}
-
-	updateLine(matrix, line) {
-		const positions = line.geometry.attributes.position.array;
-		positions[3] = matrix.elements[12];
-		positions[4] = matrix.elements[13];
-		positions[5] = matrix.elements[14];
-		line.geometry.attributes.position.needsUpdate = true;
-		line.geometry.computeBoundingSphere();
-	}
-
-	initReticle() {
-		let ring = new THREE.RingBufferGeometry(0.045, 0.05, 32).rotateX(-Math.PI / 2);
-		let dot = new THREE.CircleBufferGeometry(0.005, 32).rotateX(-Math.PI / 2);
-		const reticle = new THREE.Mesh(
-			BufferGeometryUtils.mergeBufferGeometries([ring, dot]),
-			new THREE.MeshBasicMaterial()
+	loadGoogleSR() {
+		const loader = new GLTFLoader().setPath('./assets/');
+		const self = this;
+		let dracoLoader = new DRACOLoader();
+		dracoLoader.setDecoderPath('../libs/three/js/draco/');
+		loader.setDRACOLoader(dracoLoader);
+		// Load a glTF resource
+		loader.load(
+			// resource URL
+			'Stary_rynek__google.glb',
+			// called when the resource is loaded
+			function (gltf) {
+				self.mymesh = gltf.scene;
+				self.mymesh.position.set(0, -0.5, -1);
+				self.mymesh.scale.set(0.5, 0.5, 0.5);
+				self.scene.add(gltf.scene);
+				self.mymesh.name = 'srg';
+				self.loadingBar.visible = false;
+				self.renderer.setAnimationLoop(self.render.bind(self));
+			},
+			// called while loading is progressing
+			function (xhr) {
+				self.loadingBar.progress = xhr.loaded / xhr.total;
+			},
+			// called when loading has errors
+			function (error) {
+				console.log('An error happened');
+			}
 		);
-		reticle.matrixAutoUpdate = false;
-		reticle.visible = false;
-		return reticle;
-	}
-
-	getDistance(points) {
-		if (points.length == 2) return points[0].distanceTo(points[1]);
-	}
-
-	toScreenPosition(point, camera) {
-		const width = window.innerWidth;
-		const height = window.innerHeight;
-		const vec = this.workingVec3;
-
-		vec.copy(point);
-		vec.project(camera);
-
-		vec.x = ((vec.x + 1) * width) / 2;
-		vec.y = ((-vec.y + 1) * height) / 2;
-		vec.z = 0;
-
-		return vec;
 	}
 
 	initScene() {
-		this.reticle = this.initReticle();
-
-		this.scene.add(this.reticle);
+		this.mixers = [];
+		this.collisionObjects = [];
+		this.loadGoogleSR();
 	}
 
 	setupXR() {
 		this.renderer.xr.enabled = true;
 
 		const btn = new ARButton(this.renderer, {
-			sessionInit: {
-				requiredFeatures: ['hit-test'],
-				optionalFeatures: ['dom-overlay'],
-				domOverlay: { root: document.body },
-			},
+			sessionInit: { optionalFeatures: ['dom-overlay'], domOverlay: { root: document.body } },
 		});
 
 		const self = this;
 
-		this.hitTestSourceRequested = false;
-		this.hitTestSource = null;
-
 		function onSelect() {
-			if (self.reticle.visible) {
-				const pt = new THREE.Vector3();
-				pt.setFromMatrixPosition(self.reticle.matrix);
-				self.measurements.push(pt);
-				if (self.measurements.length == 2) {
-					const distance = Math.round(self.getDistance(self.measurements) * 100);
-
-					const text = document.createElement('div');
-					text.className = 'label';
-					text.style.color = 'rgb(255,255,255)';
-					text.textContent = distance + ' cm';
-					document.querySelector('#container').appendChild(text);
-
-					self.labels.push({ div: text, point: self.getCenterPoint(self.measurements) });
-
-					self.measurements = [];
-					self.currentLine = null;
-				} else {
-					self.currentLine = self.initLine(self.measurements[0]);
-					self.scene.add(self.currentLine);
-				}
+			if (!self.action.isRunning()) {
+				self.action.time = 0;
+				self.action.enabled = true;
+				self.action.play();
 			}
 		}
 
@@ -167,57 +135,8 @@ class App {
 		this.scene.add(this.controller);
 	}
 
-	requestHitTestSource() {
-		const self = this;
-
-		const session = this.renderer.xr.getSession();
-
-		session.requestReferenceSpace('viewer').then(function (referenceSpace) {
-			session.requestHitTestSource({ space: referenceSpace }).then(function (source) {
-				self.hitTestSource = source;
-			});
-		});
-
-		session.addEventListener('end', function () {
-			self.hitTestSourceRequested = false;
-			self.hitTestSource = null;
-			self.referenceSpace = null;
-		});
-
-		this.hitTestSourceRequested = true;
-	}
-
-	getHitTestResults(frame) {
-		const hitTestResults = frame.getHitTestResults(this.hitTestSource);
-
-		if (hitTestResults.length) {
-			const referenceSpace = this.renderer.xr.getReferenceSpace();
-			const hit = hitTestResults[0];
-			const pose = hit.getPose(referenceSpace);
-
-			this.reticle.visible = true;
-			this.reticle.matrix.fromArray(pose.transform.matrix);
-
-			if (this.currentLine) this.updateLine(this.reticle.matrix, this.currentLine);
-		} else {
-			this.reticle.visible = false;
-		}
-	}
-
 	render(timestamp, frame) {
-		const self = this;
-
-		if (frame) {
-			if (this.hitTestSourceRequested === false) this.requestHitTestSource();
-
-			if (this.hitTestSource) this.getHitTestResults(frame);
-		}
-
-		this.labels.forEach((label) => {
-			const pos = self.toScreenPosition(label.point, self.renderer.xr.getCamera(self.camera));
-			label.div.style.transform = `translate(-50%, -50%) translate(${pos.x}px,${pos.y}px)`;
-		});
-
+		const dt = this.clock.getDelta();
 		this.renderer.render(this.scene, this.camera);
 	}
 }
