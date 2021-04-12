@@ -55,6 +55,12 @@ let loadVrExFour = () => {
 	}
 };
 
+let loadArExOne = () => {
+	if (window.location.pathname !== '/examples/example_05/ex_05.html') {
+		window.location = '/Spatial_WebXR/examples/example_05/ex_05.html';
+	}
+};
+
 let loadArExTwo = () => {
 	if (window.location.pathname !== '/examples/example_06/ex_06.html') {
 		window.location = '/Spatial_WebXR/examples/example_06/ex_06.html';
@@ -86,6 +92,9 @@ if (
 	window.location.pathname == '/AR_index.html' ||
 	window.location.pathname == '/Spatial_WebXR/AR_index.html'
 ) {
+	let btnArOne = document.getElementById('btn-enterAR-one');
+	btnArOne.addEventListener('click', loadArExOne);
+
 	let btnArTwo = document.getElementById('btn-enterAR-two');
 	btnArTwo.addEventListener('click', loadArExTwo);
 }
