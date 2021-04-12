@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>WebXR Example 05</title>
+		<meta charset="utf-8" />
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				overflow-y: hidden;
+				overflow-x: hidden;
+			}
+		</style>
+	</head>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" />
+	<body>
+		<script type="module">
+			import { App } from './ex_05.js';
+
+			document.addEventListener('DOMContentLoaded', function () {
+				const app = new App();
+				window.app = app;
+			});
+		</script>
+	</body>
+</html>

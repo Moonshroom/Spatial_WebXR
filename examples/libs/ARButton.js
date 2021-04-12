@@ -18,14 +18,21 @@ class ARButton {
 			const button = document.createElement('button');
 			button.style.display = 'none';
 			const welcomeDM = document.createElement('a');
-			this.stylizeElement(welcomeDM, true, '25px', false);
-			welcomeDM.innerHTML =
-				'After doubleclick on camera icon, point floor until You see white circle, then tap your screen to start measuring';
+			this.stylizeElement(welcomeDM, false, '25px', false);
 			welcomeDM.style.top = '1px';
 			welcomeDM.style.textAlign = 'center';
 			welcomeDM.style.fontSize = '25px';
 			welcomeDM.style.width = '100vw';
 			welcomeDM.style.height = '120px';
+			const lastPath = (thePath) => thePath.substring(thePath.lastIndexOf('/') + 1);
+			if (lastPath(window.location.pathname) == 'ex_06.html') {
+				welcomeDM.innerHTML =
+					'After doubleclick on camera icon, point floor until You see white circle, then tap your screen to start measuring';
+			} else {
+				welcomeDM.innerHTML = 'cokolwiek innego';
+				console.log(lastPath(window.location.pathname));
+			}
+
 			navigator.xr.isSessionSupported('immersive-ar').then((supported) => {
 				supported ? this.showStartAR(button) : this.showARNotSupported(button);
 			});
