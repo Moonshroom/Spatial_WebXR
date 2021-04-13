@@ -75,7 +75,7 @@ class App {
 		this.renderer.setSize(window.innerWidth, window.innerHeight);
 	}
 
-	loadGoogleSR() {
+	loadWngig() {
 		const loader = new GLTFLoader().setPath('./assets/');
 		const self = this;
 		let dracoLoader = new DRACOLoader();
@@ -84,12 +84,12 @@ class App {
 		// Load a glTF resource
 		loader.load(
 			// resource URL
-			'Stary_rynek__google.glb',
+			'wngig_google.glb',
 			// called when the resource is loaded
 			function (gltf) {
 				self.mymesh = gltf.scene;
-				self.mymesh.position.set(0, -0.5, -1);
-				self.mymesh.scale.set(0.5, 0.5, 0.5);
+				self.mymesh.position.set(0, 0, -1);
+				self.mymesh.scale.set(0.25, 0.25, 0.25);
 				self.scene.add(gltf.scene);
 				self.mymesh.name = 'srg';
 				self.loadingBar.visible = false;
@@ -109,7 +109,7 @@ class App {
 	initScene() {
 		this.mixers = [];
 		this.collisionObjects = [];
-		this.loadGoogleSR();
+		this.loadWngig();
 	}
 
 	setupXR() {

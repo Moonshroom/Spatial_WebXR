@@ -103,13 +103,13 @@ class ARButton {
 		button.innerHTML = '<i class="fas fa-camera"></i>';
 
 		button.onmouseenter = function () {
-			button.style.fontSize = '25px';
+			button.style.fontSize = '40px';
 			button.textContent = currentSession === null ? 'START AR' : 'STOP AR';
 			button.style.opacity = '1.0';
 		};
 
 		button.onmouseleave = function () {
-			button.style.fontSize = '75px';
+			button.style.fontSize = '40px';
 			button.innerHTML = '<i class="fas fa-camera"></i>';
 			button.style.opacity = '0.5';
 		};
@@ -136,8 +136,8 @@ class ARButton {
 		button.style.cursor = 'auto';
 		button.style.opacity = '0.5';
 
-		button.onmouseenter = null;
-		button.onmouseleave = null;
+		// button.onmouseenter = null;
+		// button.onmouseleave = null;
 
 		button.onclick = null;
 	}
