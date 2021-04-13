@@ -88,7 +88,7 @@ class App {
 			// called when the resource is loaded
 			function (gltf) {
 				self.mymesh = gltf.scene;
-				self.mymesh.position.set(0, 0, -1);
+				self.mymesh.position.set(0, -0.25, -1);
 				self.mymesh.scale.set(0.25, 0.25, 0.25);
 				self.scene.add(gltf.scene);
 				self.mymesh.name = 'srg';
