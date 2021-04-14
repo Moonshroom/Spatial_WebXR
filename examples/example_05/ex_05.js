@@ -29,7 +29,7 @@ class App {
 		this.scene.add(ambient);
 
 		const light = new THREE.DirectionalLight();
-		light.position.set(0.2, 2, 1);
+		light.position.set(0.2, 5, 1);
 		this.scene.add(light);
 
 		this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -37,7 +37,7 @@ class App {
 		this.renderer.setSize(window.innerWidth, window.innerHeight);
 		this.renderer.outputEncoding = THREE.sRGBEncoding;
 		container.appendChild(this.renderer.domElement);
-		this.setEnvironment();
+		// this.setEnvironment();
 
 		this.workingVec3 = new THREE.Vector3();
 
@@ -47,27 +47,27 @@ class App {
 		window.addEventListener('resize', this.resize.bind(this));
 	}
 
-	setEnvironment() {
-		const loader = new RGBELoader().setDataType(THREE.UnsignedByteType);
-		const pmremGenerator = new THREE.PMREMGenerator(this.renderer);
-		pmremGenerator.compileEquirectangularShader();
+	// setEnvironment() {
+	// 	const loader = new RGBELoader().setDataType(THREE.UnsignedByteType);
+	// 	const pmremGenerator = new THREE.PMREMGenerator(this.renderer);
+	// 	pmremGenerator.compileEquirectangularShader();
 
-		const self = this;
+	// 	const self = this;
 
-		loader.load(
-			'./assets/venice_sunset_1k.hdr',
-			(texture) => {
-				const envMap = pmremGenerator.fromEquirectangular(texture).texture;
-				pmremGenerator.dispose();
+	// 	loader.load(
+	// 		'./assets/venice_sunset_1k.hdr',
+	// 		(texture) => {
+	// 			const envMap = pmremGenerator.fromEquirectangular(texture).texture;
+	// 			pmremGenerator.dispose();
 
-				self.scene.environment = envMap;
-			},
-			undefined,
-			(err) => {
-				console.error('An error occurred setting the environment');
-			}
-		);
-	}
+	// 			self.scene.environment = envMap;
+	// 		},
+	// 		undefined,
+	// 		(err) => {
+	// 			console.error('An error occurred setting the environment');
+	// 		}
+	// 	);
+	// }
 
 	resize() {
 		this.camera.aspect = window.innerWidth / window.innerHeight;
@@ -134,7 +134,6 @@ class App {
 
 		this.scene.add(this.controller);
 	}
-
 	render(timestamp, frame) {
 		const dt = this.clock.getDelta();
 		let wngig = this.scene.getObjectByName('wngig');
