@@ -29,7 +29,7 @@ class App {
 		this.scene.add(ambient);
 
 		const light = new THREE.DirectionalLight();
-		light.position.set(0.2, 1, 1);
+		light.position.set(0.2, 2, 1);
 		this.scene.add(light);
 
 		this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -91,7 +91,7 @@ class App {
 				self.mymesh.position.set(0, -0.25, -1);
 				self.mymesh.scale.set(0.25, 0.25, 0.25);
 				self.scene.add(gltf.scene);
-				self.mymesh.name = 'srg';
+				self.mymesh.name = 'wngig';
 				self.loadingBar.visible = false;
 				self.renderer.setAnimationLoop(self.render.bind(self));
 			},
@@ -137,6 +137,8 @@ class App {
 
 	render(timestamp, frame) {
 		const dt = this.clock.getDelta();
+		let wngig = this.scene.getObjectByName('wngig');
+		console.log(wngig);
 		this.renderer.render(this.scene, this.camera);
 	}
 }
