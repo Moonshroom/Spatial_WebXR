@@ -67,11 +67,11 @@ class App {
 		this.hitTestSource = null;
 
 		function onSelect() {
-			if (self.chair === undefined) return;
+			if (self.mymesh === undefined) return;
 
 			if (self.reticle.visible) {
-				self.chair.position.setFromMatrixPosition(self.reticle.matrix);
-				self.chair.visible = true;
+				self.mymesh.position.setFromMatrixPosition(self.reticle.matrix);
+				self.mymesh.visible = true;
 			}
 		}
 
@@ -109,7 +109,7 @@ class App {
 		);
 	}
 
-	showChair() {
+	showModel() {
 		this.initAR();
 
 		const loader = new GLTFLoader().setPath(this.assetsPath);
@@ -126,9 +126,10 @@ class App {
 			// called when the resource is loaded
 			function (gltf) {
 				self.scene.add(gltf.scene);
-				self.chair = gltf.scene;
+				self.mymesh = gltf.scene;
+				self.mymesh.scale.set(0.7, 0.7, 0.7);
 
-				self.chair.visible = false;
+				self.mymesh.visible = false;
 
 				self.loadingBar.visible = false;
 
@@ -165,9 +166,9 @@ class App {
 
 			currentSession = null;
 
-			if (self.chair !== null) {
-				self.scene.remove(self.chair);
-				self.chair = null;
+			if (self.mymesh !== null) {
+				self.scene.remove(self.mymesh);
+				self.mymesh = null;
 			}
 
 			self.renderer.setAnimationLoop(null);
