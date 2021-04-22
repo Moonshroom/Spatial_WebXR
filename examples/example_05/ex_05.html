@@ -10,6 +10,36 @@
 				overflow-y: hidden;
 				overflow-x: hidden;
 			}
+			.holder {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				border: solid;
+				bottom: 0px;
+			}
+			.ar-button {
+				height: 10vh;
+				width: 40vw;
+				right: 0px;
+				font-size: 8em;
+				color: whitesmoke;
+				background-color: rgba(0, 128, 0, 0.5);
+				border-radius: 20px;
+			}
+			.instruction {
+				height: 10vh;
+				width: 58vw;
+				display: flex;
+				align-items: center;
+				padding-right: 1vw;
+				padding-left: 1vw;
+				text-align: center;
+				color: whitesmoke;
+				font-size: 2em;
+				font-weight: bold;
+				background-color: hsla(0, 0%, 39%, 0.5);
+				border-radius: 20px;
+			}
 		</style>
 	</head>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" />
@@ -22,5 +52,14 @@
 				window.app = app;
 			});
 		</script>
+		<div class="holder">
+			<button class="ar-button" onclick="window.app.showChair();">
+				<i class="fas fa-camera"></i>
+			</button>
+			<div class="instruction">
+				Use the green button to start an AR session. Point camera to the floor and click on
+				the screen to load model
+			</div>
+		</div>
 	</body>
 </html>
