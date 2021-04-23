@@ -18,18 +18,46 @@ let loadARexamples = () => {
 //navigation
 let aboutElement, vrElement, arElement, wglElement;
 
-aboutElement = document.getElementById('menu-wrapper-links-aboutProject');
-aboutElement.addEventListener('click', loadMainPage);
+const mediaQuery = window.matchMedia('(max-width: 426px)');
+if (mediaQuery.matches && window.location.pathname == '/index.html') {
+	aboutElement = document.getElementById('menu-wrapper-links-aboutProject');
+	let scrollAP = () => {
+		let scrollTo = document.getElementById('about-component');
+		scrollTo.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+	};
+	aboutElement.addEventListener('click', scrollAP);
+} else {
+	aboutElement = document.getElementById('menu-wrapper-links-aboutProject');
+	aboutElement.addEventListener('click', loadMainPage);
+}
 
-vrElement = document.getElementById('menu-wrapper-links-WebVR');
-vrElement.addEventListener('click', loadVRexamples);
+if (mediaQuery.matches && window.location.pathname == '/VR_index.html') {
+	vrElement = document.getElementById('menu-wrapper-links-WebVR');
+	let scrollVR = () => {
+		let scrollTo = document.getElementById('vrexamples-component');
+		scrollTo.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+	};
+	vrElement.addEventListener('click', scrollVR);
+} else {
+	vrElement = document.getElementById('menu-wrapper-links-WebVR');
+	vrElement.addEventListener('click', loadVRexamples);
+}
 
-arElement = document.getElementById('menu-wrapper-links-WebAR');
-arElement.addEventListener('click', loadARexamples);
+if (mediaQuery.matches && window.location.pathname == '/AR_index.html') {
+	arElement = document.getElementById('menu-wrapper-links-WebAR');
+	let scrollAR = () => {
+		let scrollTo = document.getElementById('arexamples-component');
+		scrollTo.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+	};
+	arElement.addEventListener('click', scrollAR);
+} else {
+	arElement = document.getElementById('menu-wrapper-links-WebAR');
+	arElement.addEventListener('click', loadARexamples);
+}
 
 //app version
 let appVersion = document.getElementById('app-version');
-appVersion.innerHTML = '0.9.7';
+appVersion.innerHTML = '0.9.8';
 //VR examples navigation
 let loadVrExOne = () => {
 	if (window.location.pathname !== '/examples/example_01/ex_01.html') {

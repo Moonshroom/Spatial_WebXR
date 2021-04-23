@@ -1,20 +1,30 @@
 @mixin pulse_animation($duration: 1s, $iteration: infinite, $timing: linear) {
-    animation-duration: $duration;
-    animation-iteration-count: $iteration;
-    animation-timing-function: $timing;
-  }
-  
-  @mixin unselectable {
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-  
-  @mixin text_readable {
-    text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black, 0 -0.05em black,
-      -0.05em -0.05em black, -0.05em 0.05em black, 0.05em -0.05em black,
-      0.05em 0.05em black;
-  }
-  
+	animation-duration: $duration;
+	animation-iteration-count: $iteration;
+	animation-timing-function: $timing;
+}
+
+@mixin unselectable {
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+@mixin text_readable {
+	text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black, 0 -0.05em black,
+		-0.05em -0.05em black, -0.05em 0.05em black, 0.05em -0.05em black, 0.05em 0.05em black;
+}
+
+$media-expressions: (
+	'screen': 'screen',
+	'print': 'print',
+	'handheld': 'handheld',
+	'landscape': '(orientation: landscape)',
+	'portrait': '(orientation: portrait)',
+	'retina2x':
+		'(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx)',
+	'retina3x':
+		'(-webkit-min-device-pixel-ratio: 3), (min-resolution: 350dpi), (min-resolution: 3dppx)',
+) !default;

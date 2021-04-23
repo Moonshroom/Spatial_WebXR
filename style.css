@@ -48,6 +48,19 @@ body {
           flex-direction: row;
 }
 
+@media (max-width: 426px) and (-webkit-min-device-pixel-ratio: 2), (max-width: 426px) and (min-resolution: 192dpi), (max-width: 426px) and (min-resolution: 2dppx) {
+  body {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5))), url("./assets/phone.png");
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("./assets/phone.png");
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
 body #background-pentagon-net {
   background: url("./assets/pentagonNet.png");
   background-repeat: round;
@@ -55,6 +68,12 @@ body #background-pentagon-net {
   height: 100vh;
   opacity: 0.2;
   position: absolute;
+}
+
+@media (max-width: 426px) {
+  body #background-pentagon-net {
+    display: none;
+  }
 }
 
 body .menu-wrapper {
@@ -70,6 +89,19 @@ body .menu-wrapper {
   justify-items: end;
   text-align: center;
   z-index: 1;
+}
+
+@media (max-width: 426px) {
+  body .menu-wrapper {
+    width: 100vw;
+    height: 70vh;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
 }
 
 body .menu-wrapper-links {
@@ -88,7 +120,16 @@ body .menu-wrapper-links {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black, 0 -0.05em black, -0.05em -0.05em black, -0.05em 0.05em black, 0.05em -0.05em black, 0.05em 0.05em black;
+  text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black, 0 -0.05em black, -0.05em -0.05em black, -0.05em 0.05em black, 0.05em -0.05em black, 0.05em 0.05em black;
+}
+
+@media (max-width: 426px) {
+  body .menu-wrapper-links {
+    font-size: 2.4em;
+    -ms-grid-row: 1;
+        grid-row-start: 1;
+    grid-row-end: 2;
+  }
 }
 
 body .menu-wrapper-links #menu-wrapper-links-WebGL {
@@ -127,7 +168,15 @@ body .menu-wrapper-copyrights {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black, 0 -0.05em black, -0.05em -0.05em black, -0.05em 0.05em black, 0.05em -0.05em black, 0.05em 0.05em black;
+  text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black, 0 -0.05em black, -0.05em -0.05em black, -0.05em 0.05em black, 0.05em -0.05em black, 0.05em 0.05em black;
+}
+
+@media (max-width: 426px) {
+  body .menu-wrapper-copyrights {
+    font-size: 1.4em;
+    -ms-grid-row: 3;
+        grid-row-start: 3;
+  }
 }
 
 body #about-component {
@@ -150,6 +199,17 @@ body #about-component {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+@media (max-width: 426px) {
+  body #about-component {
+    width: 100vw;
+    font-size: 1.2em;
+        grid-template-areas: 'name ' 'webxr' 'sp' 'using';
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    grid-gap: 0.5vw;
+  }
 }
 
 body #about-component #about-header {
@@ -184,6 +244,16 @@ body .component {
   user-select: none;
 }
 
+@media (max-width: 426px) {
+  body .component {
+    width: 100vw;
+    font-size: 1.2em;
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    grid-gap: 0.5vw;
+  }
+}
+
 body .component-header {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
@@ -197,13 +267,20 @@ body .component-header {
   text-shadow: black 0px 0px 15px;
 }
 
+@media (max-width: 426px) {
+  body .component-header {
+    text-align: center;
+    font-size: 1.8em;
+  }
+}
+
 body .component-panel {
   -ms-grid-column-align: center;
       justify-self: center;
   -ms-flex-item-align: start;
       -ms-grid-row-align: start;
       align-self: start;
-  text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black, 0 -0.05em black, -0.05em -0.05em black, -0.05em 0.05em black, 0.05em -0.05em black, 0.05em 0.05em black;
+  text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black, 0 -0.05em black, -0.05em -0.05em black, -0.05em 0.05em black, 0.05em -0.05em black, 0.05em 0.05em black;
   text-align: left;
   font-size: 1em;
   padding: 25px 25px;
@@ -228,9 +305,22 @@ body .component-holder {
       justify-self: center;
   -ms-grid-row-align: center;
       align-self: center;
-  text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black, 0 -0.05em black, -0.05em -0.05em black, -0.05em 0.05em black, 0.05em -0.05em black, 0.05em 0.05em black;
+  text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black, 0 -0.05em black, -0.05em -0.05em black, -0.05em 0.05em black, 0.05em -0.05em black, 0.05em 0.05em black;
   font-size: 1em;
   overflow-y: auto;
+}
+
+@media (max-width: 426px) {
+  body .component-holder {
+    width: 100vw;
+    margin-top: 105vh;
+    overflow-y: hidden;
+        grid-template-areas: 'one' 'two' 'three' 'four';
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    grid-gap: 2vw;
+    font-size: 1.2em;
+  }
 }
 
 body .component-holder-examples {
@@ -240,6 +330,13 @@ body .component-holder-examples {
   -ms-flex-pack: distribute;
       justify-content: space-around;
   border-radius: 5%;
+}
+
+@media (max-width: 426px) {
+  body .component-holder-examples {
+    width: 100vw;
+    height: 50vh;
+  }
 }
 
 body .component-holder-examples .btn-enterVR {
@@ -316,9 +413,21 @@ body .component-holder-ar {
       justify-self: center;
   -ms-grid-row-align: center;
       align-self: center;
-  text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black, 0 -0.05em black, -0.05em -0.05em black, -0.05em 0.05em black, 0.05em -0.05em black, 0.05em 0.05em black;
+  text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black, 0 -0.05em black, -0.05em -0.05em black, -0.05em 0.05em black, 0.05em -0.05em black, 0.05em 0.05em black;
   font-size: 1em;
   overflow-y: auto;
+}
+
+@media (max-width: 426px) {
+  body .component-holder-ar {
+    width: 100vw;
+    overflow-y: hidden;
+        grid-template-areas: 'one' 'two';
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    grid-gap: 2vw;
+    font-size: 1.2em;
+  }
 }
 
 body .component-holder-ar .example-AR {
@@ -333,6 +442,13 @@ body .component-holder-ar .example-AR {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+@media (max-width: 426px) {
+  body .component-holder-ar .example-AR {
+    width: 100vw;
+    height: 35vh;
+  }
 }
 
 body .component-holder-ar .example-AR .btn-enterAR {

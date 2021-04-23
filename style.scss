@@ -1,6 +1,7 @@
 @import './styles/variables';
 @import './styles/animations';
-@import './styles/functions.scss';
+@import './styles/functions';
+@import './styles/breakpoints/breakpoints';
 
 body {
 	margin: 0;
@@ -15,6 +16,14 @@ body {
 	display: flex;
 	flex-direction: row;
 
+	@include media('<=phone', 'retina2x') {
+		background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+			url('./assets/phone.png');
+		background-size: 100% 100%;
+		background-attachment: fixed;
+		flex-direction: column;
+	}
+
 	#background-pentagon-net {
 		background: url('./assets/pentagonNet.png');
 		background-repeat: round;
@@ -22,6 +31,9 @@ body {
 		height: 100vh;
 		opacity: 0.2;
 		position: absolute;
+		@include media('<=phone') {
+			display: none;
+		}
 	}
 	.menu-wrapper {
 		font-family: $fontFamily;
@@ -34,6 +46,12 @@ body {
 		justify-items: end;
 		text-align: center;
 		z-index: 1;
+		@include media('<=phone') {
+			width: 100vw;
+			height: 70vh;
+			align-items: center;
+			justify-content: center;
+		}
 
 		&-links {
 			font-size: $menuFontSize;
@@ -45,7 +63,11 @@ body {
 			align-self: end;
 			@include unselectable;
 			@include text_readable;
-
+			@include media('<=phone') {
+				font-size: $bigFont * 1.2;
+				grid-row-start: 1;
+				grid-row-end: 2;
+			}
 			#menu-wrapper-links-WebGL {
 				display: none;
 			}
@@ -69,6 +91,11 @@ body {
 			cursor: none;
 			@include unselectable;
 			@include text_readable;
+
+			@include media('<=phone') {
+				font-size: $smallFont * 1.4;
+				grid-row-start: 3;
+			}
 		}
 	}
 	#about-component {
@@ -87,6 +114,17 @@ body {
 		font-family: $fontFamily;
 		cursor: default;
 		@include unselectable;
+		@include media('<=phone') {
+			width: 100vw;
+			font-size: $smallFont * 1.2;
+			grid-template-areas:
+				'name '
+				'webxr'
+				'sp'
+				'using';
+			grid-template-columns: 1fr;
+			grid-gap: 0.5vw;
+		}
 		#about-header {
 			grid-area: name;
 			font-size: $bigFont;
@@ -110,12 +148,22 @@ body {
 		color: $textColorMain;
 		font-family: $fontFamily;
 		@include unselectable;
+		@include media('<=phone') {
+			width: 100vw;
+			font-size: $smallFont * 1.2;
+			grid-template-columns: 1fr;
+			grid-gap: 0.5vw;
+		}
 		&-header {
 			grid-area: name;
 			font-size: $bigFont;
 			justify-self: center;
 			align-self: end;
 			text-shadow: rgb(0, 0, 0) 0px 0px 15px;
+			@include media('<=phone') {
+				text-align: center;
+				font-size: $bigFont * 0.9;
+			}
 		}
 
 		&-panel {
@@ -145,6 +193,19 @@ body {
 			@include text_readable;
 			font-size: $smallFont;
 			overflow-y: auto;
+			@include media('<=phone') {
+				width: 100vw;
+				margin-top: 105vh;
+				overflow-y: hidden;
+				grid-template-areas:
+					'one'
+					'two'
+					'three'
+					'four';
+				grid-template-columns: 1fr;
+				grid-gap: 2vw;
+				font-size: $smallFont * 1.2;
+			}
 
 			&-examples {
 				width: 28rem;
@@ -152,6 +213,10 @@ body {
 				background-color: rgba(0, 0, 0, 0.5);
 				justify-content: space-around;
 				border-radius: 5%;
+				@include media('<=phone') {
+					width: 100vw;
+					height: 50vh;
+				}
 
 				.btn-enterVR {
 					background-color: $buttonOne;
@@ -214,6 +279,16 @@ body {
 			@include text_readable;
 			font-size: $smallFont;
 			overflow-y: auto;
+			@include media('<=phone') {
+				width: 100vw;
+				overflow-y: hidden;
+				grid-template-areas:
+					'one'
+					'two';
+				grid-template-columns: 1fr;
+				grid-gap: 2vw;
+				font-size: $smallFont * 1.2;
+			}
 
 			.example-AR {
 				width: 25rem;
@@ -222,6 +297,10 @@ body {
 				border-radius: 5%;
 				display: flex;
 				flex-direction: column;
+				@include media('<=phone') {
+					width: 100vw;
+					height: 35vh;
+				}
 
 				.btn-enterAR {
 					width: 250px;
