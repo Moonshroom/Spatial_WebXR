@@ -19,7 +19,7 @@ let loadARexamples = () => {
 let aboutElement, vrElement, arElement, wglElement;
 
 const mediaQuery = window.matchMedia('(max-width: 426px)');
-if (mediaQuery.matches && window.location.pathname == '/index.html') {
+if (mediaQuery.matches && window.location.pathname == '/Spatial_WebXR/index.html') {
 	aboutElement = document.getElementById('menu-wrapper-links-aboutProject');
 	let scrollAP = () => {
 		let scrollTo = document.getElementById('about-component');
@@ -31,7 +31,7 @@ if (mediaQuery.matches && window.location.pathname == '/index.html') {
 	aboutElement.addEventListener('click', loadMainPage);
 }
 
-if (mediaQuery.matches && window.location.pathname == '/VR_index.html') {
+if (mediaQuery.matches && window.location.pathname == '/Spatial_WebXR/VR_index.html') {
 	vrElement = document.getElementById('menu-wrapper-links-WebVR');
 	let scrollVR = () => {
 		let scrollTo = document.getElementById('vrexamples-component');
@@ -43,7 +43,7 @@ if (mediaQuery.matches && window.location.pathname == '/VR_index.html') {
 	vrElement.addEventListener('click', loadVRexamples);
 }
 
-if (mediaQuery.matches && window.location.pathname == '/AR_index.html') {
+if (mediaQuery.matches && window.location.pathname == '/Spatial_WebXR/AR_index.html') {
 	arElement = document.getElementById('menu-wrapper-links-WebAR');
 	let scrollAR = () => {
 		let scrollTo = document.getElementById('arexamples-component');
@@ -57,7 +57,7 @@ if (mediaQuery.matches && window.location.pathname == '/AR_index.html') {
 
 //app version
 let appVersion = document.getElementById('app-version');
-appVersion.innerHTML = '0.9.8';
+appVersion.innerHTML = '0.9.85';
 //VR examples navigation
 let loadVrExOne = () => {
 	if (window.location.pathname !== '/examples/example_01/ex_01.html') {
