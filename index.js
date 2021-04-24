@@ -19,6 +19,10 @@ let loadARexamples = () => {
 let aboutElement, vrElement, arElement, wglElement;
 
 const mediaQuery = window.matchMedia('(max-width: 426px)');
+if (mediaQuery.matches) {
+	console.log(screen.orientation);
+	screen.orientation.type == 'portrait-primary';
+}
 if (mediaQuery.matches && window.location.pathname == '/Spatial_WebXR/index.html') {
 	aboutElement = document.getElementById('menu-wrapper-links-aboutProject');
 	let scrollAP = () => {
@@ -57,7 +61,7 @@ if (mediaQuery.matches && window.location.pathname == '/Spatial_WebXR/AR_index.h
 
 //app version
 let appVersion = document.getElementById('app-version');
-appVersion.innerHTML = '0.9.85';
+appVersion.innerHTML = '0.9.87';
 //VR examples navigation
 let loadVrExOne = () => {
 	if (window.location.pathname !== '/examples/example_01/ex_01.html') {

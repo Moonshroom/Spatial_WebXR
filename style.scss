@@ -22,6 +22,7 @@ body {
 		background-size: 100% 100%;
 		background-attachment: fixed;
 		flex-direction: column;
+		background-repeat: no-repeat;
 	}
 
 	#background-pentagon-net {
@@ -32,6 +33,9 @@ body {
 		opacity: 0.2;
 		position: absolute;
 		@include media('<=phone') {
+			display: none;
+		}
+		@include media('<tablet') {
 			display: none;
 		}
 	}
@@ -64,7 +68,7 @@ body {
 			@include unselectable;
 			@include text_readable;
 			@include media('<=phone') {
-				font-size: $bigFont * 1.2;
+				font-size: $bigFont * 1.1;
 				grid-row-start: 1;
 				grid-row-end: 2;
 			}
@@ -77,6 +81,15 @@ body {
 					animation: pulse;
 					@include pulse_animation;
 					cursor: pointer;
+				}
+				@include media('<=phone') {
+					// animation: pulse;
+					// @include pulse_animation(3s, infinite, linear);
+					box-sizing: border-box;
+					border: 5px inset #8d8d8d;
+					border-radius: 20px;
+					padding: 0.2em;
+					background-color: rgba(121, 121, 121, 0.4);
 				}
 			}
 		}

@@ -58,6 +58,7 @@ body {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    background-repeat: no-repeat;
   }
 }
 
@@ -71,6 +72,12 @@ body #background-pentagon-net {
 }
 
 @media (max-width: 426px) {
+  body #background-pentagon-net {
+    display: none;
+  }
+}
+
+@media (max-width: 799px) {
   body #background-pentagon-net {
     display: none;
   }
@@ -125,7 +132,7 @@ body .menu-wrapper-links {
 
 @media (max-width: 426px) {
   body .menu-wrapper-links {
-    font-size: 2.4em;
+    font-size: 2.2em;
     -ms-grid-row: 1;
         grid-row-start: 1;
     grid-row-end: 2;
@@ -150,6 +157,17 @@ body .menu-wrapper-links-link:hover {
   -webkit-animation-timing-function: linear;
           animation-timing-function: linear;
   cursor: pointer;
+}
+
+@media (max-width: 426px) {
+  body .menu-wrapper-links-link {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    border: 5px inset #8d8d8d;
+    border-radius: 20px;
+    padding: 0.2em;
+    background-color: rgba(121, 121, 121, 0.4);
+  }
 }
 
 body .menu-wrapper-copyrights {
