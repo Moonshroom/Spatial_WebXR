@@ -145,7 +145,7 @@ class App {
 					const text = document.createElement('div');
 					text.className = 'label';
 					text.style.color = 'rgb(255,255,255)';
-					text.textContent = distance + ' cm';
+					text.textContent = 'MD = ' + distance + ' cm' + ' RD =' + distance * 25 + ' m';
 					document.querySelector('#container').appendChild(text);
 
 					self.labels.push({ div: text, point: self.getCenterPoint(self.measurements) });
