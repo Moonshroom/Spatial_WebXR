@@ -1,9 +1,11 @@
 # Auto detect text files and perform LF normalization
 *.js linguist-language=JavaScript
 *.html linguist-language=JavaScript
-examples/example_01/example_01.js linguist-detectable = true
-examples/example_02/example_02.js linguist-detectable = true
-examples/example_03/example_03.js linguist-detectable = true
-examples/example_04/example_04.js linguist-detectable = true
+examples/example_01/* linguist-vendored=false
+examples/example_02/* linguist-vendored=false
+examples/example_03/* linguist-vendored=false
+examples/example_04/* linguist-vendored=false
+examples/example_05/* linguist-vendored=false
+examples/example_06/* linguist-vendored=false
 *.js linguist-detectable=true
 * text=auto
