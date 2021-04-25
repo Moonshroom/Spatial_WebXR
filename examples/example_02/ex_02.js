@@ -6,6 +6,7 @@ import { OrbitControls } from '../libs/three/jsm/OrbitControls.js';
 import { GLTFLoader } from '../libs/three/jsm/GLTFLoader.js';
 import { DRACOLoader } from '../libs/three/jsm/DRACOLoader.js';
 import { LoadingBar } from '../libs/LoadingBar.js';
+import { CanvasUI } from '../libs/CanvasUI/examples/jsm/CanvasUI.js';
 
 class App {
 	constructor() {
@@ -93,6 +94,51 @@ class App {
 		let legend = new THREE.Mesh(geoLegend, matLegend);
 		legend.position.set(0, 4, -10);
 		this.scene.add(legend);
+
+		const config = {
+			panelSize: { width: 2, height: 2 },
+			width: 512,
+			height: 512,
+			opacity: 0.9,
+			body: {
+				fontFamily: 'Arial',
+				fontSize: 30,
+				padding: 20,
+				backgroundColor: '#000',
+				fontColor: '#fff',
+				borderRadius: 6,
+			},
+			header: {
+				type: 'text',
+				position: { top: 0 },
+				paddingTop: 30,
+				height: 70,
+			},
+			main: {
+				type: 'text',
+				position: { top: 70 },
+				height: 342,
+				fontSize: 30, // default height is 512 so this is 512 - header height:70 - footer height:70
+				backgroundColor: '#bbb',
+				fontColor: '#000',
+			},
+			footer: {
+				type: 'text',
+				position: { bottom: 0 },
+				fontSize: 25,
+				paddingTop: 30,
+				height: 100,
+			},
+		};
+		const content = {
+			header: 'Zadanie 3',
+			main:
+				'Podejdź do legendy i sprawdź w jaki sposób na mapie zaznaczone są obszary o nazwie zabudowa poforteczna, następnie spróbuj zlokalizować na mapie największy z nich. ',
+			footer: 'Testy możliwości zastosowania WebXR \nw planowaniu przestrzennym',
+		};
+		const ui = new CanvasUI(content, config);
+		ui.mesh.position.set(0, 1.5, 3);
+		this.scene.add(ui.mesh);
 
 		this.colliders = [this.roomBox, legend];
 	}

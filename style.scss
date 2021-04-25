@@ -7,7 +7,7 @@ body {
 	margin: 0;
 	background-color: black;
 	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./assets/low.png');
-	background-size: 120% 120%;
+	background-size: cover;
 	background-attachment: fixed;
 	background-position: center;
 	-webkit-font-smoothing: antiliased;
@@ -68,7 +68,7 @@ body {
 			@include unselectable;
 			@include text_readable;
 			@include media('<=phone') {
-				font-size: $bigFont * 1.1;
+				font-size: $bigFont * 0.9;
 				grid-row-start: 1;
 				grid-row-end: 2;
 			}
@@ -255,6 +255,10 @@ body {
 				text-align: center;
 				vertical-align: middle;
 				line-height: 6rem;
+				@include media('<=phone') {
+					font-size: $bigFont * 0.8;
+					line-height: 10rem;
+				}
 			}
 			#example-two {
 				grid-area: two;
@@ -262,6 +266,10 @@ body {
 				text-align: center;
 				vertical-align: middle;
 				line-height: 6rem;
+				@include media('<=phone') {
+					font-size: $bigFont * 0.8;
+					line-height: 10rem;
+				}
 			}
 			#example-three {
 				grid-area: three;
@@ -270,6 +278,9 @@ body {
 				text-align: center;
 				vertical-align: middle;
 				line-height: 3rem;
+				@include media('<=phone') {
+					font-size: $bigFont * 0.8;
+				}
 			}
 			#example-four {
 				grid-area: four;
@@ -278,6 +289,9 @@ body {
 				text-align: center;
 				vertical-align: middle;
 				line-height: 3rem;
+				@include media('<=phone') {
+					font-size: $bigFont * 0.8;
+				}
 			}
 		}
 		&-holder-ar {
@@ -340,6 +354,9 @@ body {
 				text-align: center;
 				vertical-align: middle;
 				line-height: 8rem;
+				@include media('<=phone') {
+					font-size: $bigFont * 0.8;
+				}
 			}
 			#example-two-ar {
 				grid-area: two;
@@ -347,6 +364,9 @@ body {
 				text-align: center;
 				vertical-align: middle;
 				line-height: 8rem;
+				@include media('<=phone') {
+					font-size: $bigFont * 0.8;
+				}
 			}
 		}
 	}

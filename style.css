@@ -33,7 +33,7 @@ body {
   background-color: black;
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5))), url("./assets/low.png");
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("./assets/low.png");
-  background-size: 120% 120%;
+  background-size: cover;
   background-attachment: fixed;
   background-position: center;
   -webkit-font-smoothing: antiliased;
@@ -48,7 +48,7 @@ body {
           flex-direction: row;
 }
 
-@media (max-width: 426px) and (-webkit-min-device-pixel-ratio: 2), (max-width: 426px) and (min-resolution: 192dpi), (max-width: 426px) and (min-resolution: 2dppx) {
+@media (max-width: 750px) and (-webkit-min-device-pixel-ratio: 2), (max-width: 750px) and (min-resolution: 192dpi), (max-width: 750px) and (min-resolution: 2dppx) {
   body {
     background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5))), url("./assets/phone.png");
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("./assets/phone.png");
@@ -71,7 +71,7 @@ body #background-pentagon-net {
   position: absolute;
 }
 
-@media (max-width: 426px) {
+@media (max-width: 750px) {
   body #background-pentagon-net {
     display: none;
   }
@@ -98,7 +98,7 @@ body .menu-wrapper {
   z-index: 1;
 }
 
-@media (max-width: 426px) {
+@media (max-width: 750px) {
   body .menu-wrapper {
     width: 100vw;
     height: 70vh;
@@ -130,9 +130,9 @@ body .menu-wrapper-links {
   text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black, 0 -0.05em black, -0.05em -0.05em black, -0.05em 0.05em black, 0.05em -0.05em black, 0.05em 0.05em black;
 }
 
-@media (max-width: 426px) {
+@media (max-width: 750px) {
   body .menu-wrapper-links {
-    font-size: 2.2em;
+    font-size: 1.8em;
     -ms-grid-row: 1;
         grid-row-start: 1;
     grid-row-end: 2;
@@ -159,7 +159,7 @@ body .menu-wrapper-links-link:hover {
   cursor: pointer;
 }
 
-@media (max-width: 426px) {
+@media (max-width: 750px) {
   body .menu-wrapper-links-link {
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
@@ -189,7 +189,7 @@ body .menu-wrapper-copyrights {
   text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black, 0 -0.05em black, -0.05em -0.05em black, -0.05em 0.05em black, 0.05em -0.05em black, 0.05em 0.05em black;
 }
 
-@media (max-width: 426px) {
+@media (max-width: 750px) {
   body .menu-wrapper-copyrights {
     font-size: 1.4em;
     -ms-grid-row: 3;
@@ -219,7 +219,7 @@ body #about-component {
   user-select: none;
 }
 
-@media (max-width: 426px) {
+@media (max-width: 750px) {
   body #about-component {
     width: 100vw;
     font-size: 1.2em;
@@ -262,7 +262,7 @@ body .component {
   user-select: none;
 }
 
-@media (max-width: 426px) {
+@media (max-width: 750px) {
   body .component {
     width: 100vw;
     font-size: 1.2em;
@@ -285,7 +285,7 @@ body .component-header {
   text-shadow: black 0px 0px 15px;
 }
 
-@media (max-width: 426px) {
+@media (max-width: 750px) {
   body .component-header {
     text-align: center;
     font-size: 1.8em;
@@ -328,7 +328,7 @@ body .component-holder {
   overflow-y: auto;
 }
 
-@media (max-width: 426px) {
+@media (max-width: 750px) {
   body .component-holder {
     width: 100vw;
     margin-top: 105vh;
@@ -350,7 +350,7 @@ body .component-holder-examples {
   border-radius: 5%;
 }
 
-@media (max-width: 426px) {
+@media (max-width: 750px) {
   body .component-holder-examples {
     width: 100vw;
     height: 50vh;
@@ -387,6 +387,13 @@ body .component-holder #example-one {
   line-height: 6rem;
 }
 
+@media (max-width: 750px) {
+  body .component-holder #example-one {
+    font-size: 1.6em;
+    line-height: 10rem;
+  }
+}
+
 body .component-holder #example-two {
   -ms-grid-row: 1;
   -ms-grid-row-span: 2;
@@ -396,6 +403,13 @@ body .component-holder #example-two {
   text-align: center;
   vertical-align: middle;
   line-height: 6rem;
+}
+
+@media (max-width: 750px) {
+  body .component-holder #example-two {
+    font-size: 1.6em;
+    line-height: 10rem;
+  }
 }
 
 body .component-holder #example-three {
@@ -409,6 +423,12 @@ body .component-holder #example-three {
   line-height: 3rem;
 }
 
+@media (max-width: 750px) {
+  body .component-holder #example-three {
+    font-size: 1.6em;
+  }
+}
+
 body .component-holder #example-four {
   -ms-grid-row: 2;
   -ms-grid-column: 2;
@@ -418,6 +438,12 @@ body .component-holder #example-four {
   text-align: center;
   vertical-align: middle;
   line-height: 3rem;
+}
+
+@media (max-width: 750px) {
+  body .component-holder #example-four {
+    font-size: 1.6em;
+  }
 }
 
 body .component-holder-ar {
@@ -436,7 +462,7 @@ body .component-holder-ar {
   overflow-y: auto;
 }
 
-@media (max-width: 426px) {
+@media (max-width: 750px) {
   body .component-holder-ar {
     width: 100vw;
     overflow-y: hidden;
@@ -462,7 +488,7 @@ body .component-holder-ar .example-AR {
           flex-direction: column;
 }
 
-@media (max-width: 426px) {
+@media (max-width: 750px) {
   body .component-holder-ar .example-AR {
     width: 100vw;
     height: 35vh;
@@ -502,6 +528,12 @@ body .component-holder-ar #example-one-ar {
   line-height: 8rem;
 }
 
+@media (max-width: 750px) {
+  body .component-holder-ar #example-one-ar {
+    font-size: 1.6em;
+  }
+}
+
 body .component-holder-ar #example-two-ar {
   -ms-grid-row: 1;
   -ms-grid-row-span: 2;
@@ -511,5 +543,11 @@ body .component-holder-ar #example-two-ar {
   text-align: center;
   vertical-align: middle;
   line-height: 8rem;
+}
+
+@media (max-width: 750px) {
+  body .component-holder-ar #example-two-ar {
+    font-size: 1.6em;
+  }
 }
 /*# sourceMappingURL=style.css.map */

@@ -17,12 +17,8 @@ let loadARexamples = () => {
 
 //navigation
 let aboutElement, vrElement, arElement, wglElement;
-
 const mediaQuery = window.matchMedia('(max-width: 426px)');
-if (mediaQuery.matches) {
-	console.log(screen.orientation);
-	screen.orientation.type == 'portrait-primary';
-}
+
 if (mediaQuery.matches && window.location.pathname == '/Spatial_WebXR/index.html') {
 	aboutElement = document.getElementById('menu-wrapper-links-aboutProject');
 	let scrollAP = () => {
