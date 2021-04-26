@@ -57,7 +57,7 @@ if (mediaQuery.matches && window.location.pathname == '/Spatial_WebXR/AR_index.h
 
 //app version
 let appVersion = document.getElementById('app-version');
-appVersion.innerHTML = '1.0.15';
+appVersion.innerHTML = '1.0.16';
 //VR examples navigation
 let loadVrExOne = () => {
 	if (window.location.pathname !== '/examples/example_01/ex_01.html') {
