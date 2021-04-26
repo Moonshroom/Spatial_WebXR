@@ -10,6 +10,19 @@
 				overflow-y: hidden;
 				overflow-x: hidden;
 			}
+			#MDRD {
+				width: 40vw;
+				height: 7vh;
+				background-color: rgba(59, 59, 59, 0.233);
+				font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+				font-weight: bold;
+				z-index: 10;
+				bottom: 10vh;
+				position: fixed;
+				border: 5px double rgba(1, 6, 8, 0.7);
+				border-radius: 5px;
+				font-size: 2rem;
+			}
 		</style>
 	</head>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" />
@@ -22,5 +35,12 @@
 				window.app = app;
 			});
 		</script>
+		<div id="MDRD">
+			<span
+				>MD - Map Distance in cm <br />
+				RD - Real Distance in m <br />
+				Scale 1 : 2500</span
+			>
+		</div>
 	</body>
 </html>
