@@ -16,6 +16,8 @@
 				align-items: center;
 				border: solid;
 				bottom: 0px;
+				z-index: 10;
+				position: fixed;
 			}
 			.ar-button {
 				height: 10vh;
@@ -39,6 +41,7 @@
 				font-weight: bold;
 				background-color: hsla(0, 0%, 39%, 0.5);
 				border-radius: 20px;
+				left: 0px;
 			}
 		</style>
 	</head>
@@ -53,13 +56,13 @@
 			});
 		</script>
 		<div class="holder">
-			<button class="ar-button" onclick="window.app.showModel();">
-				<i class="fas fa-camera"></i>
-			</button>
 			<div class="instruction">
 				Use the green button to start an AR session. Point camera to the floor and click on
 				the screen to load model
 			</div>
+			<button class="ar-button" onclick="window.app.showModel();">
+				<i class="fas fa-camera"></i>
+			</button>
 		</div>
 	</body>
 </html>
