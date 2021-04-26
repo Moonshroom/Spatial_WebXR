@@ -18,7 +18,7 @@ class ARButton {
 			const button = document.createElement('button');
 			button.style.display = 'none';
 			const welcomeDM = document.createElement('a');
-			this.stylizeElement(welcomeDM, false, 35, false);
+			this.stylizeElement(welcomeDM, false, 25, false);
 			welcomeDM.style.top = '1px';
 			welcomeDM.style.textAlign = 'center';
 			welcomeDM.style.width = '100vw';
@@ -72,7 +72,7 @@ class ARButton {
 
 			self.renderer.xr.setReferenceSpaceType('local');
 			self.renderer.xr.setSession(session);
-			self.stylizeElement(button, false, 25, true);
+			self.stylizeElement(button, false, 25, false);
 
 			button.textContent = 'STOP AR';
 
