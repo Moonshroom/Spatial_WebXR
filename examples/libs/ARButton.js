@@ -18,10 +18,9 @@ class ARButton {
 			const button = document.createElement('button');
 			button.style.display = 'none';
 			const welcomeDM = document.createElement('a');
-			this.stylizeElement(welcomeDM, false, '25px', false);
+			this.stylizeElement(welcomeDM, false, 35, false);
 			welcomeDM.style.top = '1px';
 			welcomeDM.style.textAlign = 'center';
-			welcomeDM.style.fontSize = '25px';
 			welcomeDM.style.width = '100vw';
 			welcomeDM.style.height = '120px';
 			const lastPath = (thePath) => thePath.substring(thePath.lastIndexOf('/') + 1);
@@ -29,7 +28,7 @@ class ARButton {
 				welcomeDM.innerHTML =
 					'After doubleclick on camera icon, point floor until You see white circle, then tap your screen to start measuring';
 			} else {
-				welcomeDM.innerHTML = 'cokolwiek innego';
+				welcomeDM.innerHTML = 'An error has occurred';
 				console.log(lastPath(window.location.pathname));
 			}
 
@@ -66,14 +65,14 @@ class ARButton {
 		let currentSession = null;
 		const self = this;
 
-		this.stylizeElement(button, true, 75, true);
+		this.stylizeElement(button, true, 55, true);
 
 		function onSessionStarted(session) {
 			session.addEventListener('end', onSessionEnded);
 
 			self.renderer.xr.setReferenceSpaceType('local');
 			self.renderer.xr.setSession(session);
-			self.stylizeElement(button, false, 75, true);
+			self.stylizeElement(button, false, 25, true);
 
 			button.textContent = 'STOP AR';
 
@@ -86,7 +85,7 @@ class ARButton {
 		function onSessionEnded() {
 			currentSession.removeEventListener('end', onSessionEnded);
 
-			self.stylizeElement(button, true, 75, true);
+			self.stylizeElement(button, true, 25, true);
 			button.textContent = 'START AR';
 
 			currentSession = null;
