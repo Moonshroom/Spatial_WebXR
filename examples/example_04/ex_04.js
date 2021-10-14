@@ -39,7 +39,10 @@ class App {
 
 		container.appendChild(this.renderer.domElement);
 
-		this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+		this.controls = new OrbitControls(
+			this.camera,
+			this.renderer.domElement
+		);
 		this.controls.target.set(0, 1.6, 0);
 		this.controls.update();
 
@@ -68,7 +71,9 @@ class App {
 		const skyBox = new THREE.Mesh(
 			new THREE.SphereBufferGeometry(500, 64, 64),
 			new THREE.MeshLambertMaterial({
-				map: new THREE.TextureLoader().load('./assets/Daylight_Box.png'),
+				map: new THREE.TextureLoader().load(
+					'./assets/Daylight_Box.png'
+				),
 				side: THREE.DoubleSide,
 			})
 		);
@@ -168,10 +173,9 @@ class App {
 			},
 		};
 		const content = {
-			header: 'Zadanie 1',
-			main:
-				'Spróbuj przejść się wokół centralnej części poznańskiego rynku i obejrzeć budynki, które się na nim znajdują.',
-			footer: 'Testy możliwości zastosowania WebXR \nw planowaniu przestrzennym',
+			header: 'Exercise 1',
+			main: 'Once you are in a virtual reality environment, try walking and seeing the buildings located in the central part of the Poznan market square.',
+			footer: 'Usability of WebXR visualizations in spatial planning',
 		};
 		const ui = new CanvasUI(content, config);
 		ui.mesh.position.set(0, 2.5, 0);
@@ -212,7 +216,9 @@ class App {
 		const controllerModelFactory = new XRControllerModelFactory();
 
 		this.controllerGrip = this.renderer.xr.getControllerGrip(0);
-		this.controllerGrip.add(controllerModelFactory.createControllerModel(this.controllerGrip));
+		this.controllerGrip.add(
+			controllerModelFactory.createControllerModel(this.controllerGrip)
+		);
 
 		this.controller1 = this.renderer.xr.getController(1);
 		this.controller1.addEventListener('selectstart', onSelectStart);
@@ -261,7 +267,10 @@ class App {
 				);
 				geometry.setAttribute(
 					'color',
-					new THREE.Float32BufferAttribute([0.5, 0.5, 0.5, 0, 0, 0], 3)
+					new THREE.Float32BufferAttribute(
+						[0.5, 0.5, 0.5, 0, 0, 0],
+						3
+					)
 				);
 
 				material = new THREE.LineBasicMaterial({
@@ -272,7 +281,11 @@ class App {
 				return new THREE.Line(geometry, material);
 
 			case 'gaze':
-				geometry = new THREE.RingBufferGeometry(0.02, 0.04, 32).translate(0, 0, -1);
+				geometry = new THREE.RingBufferGeometry(
+					0.02,
+					0.04,
+					32
+				).translate(0, 0, -1);
 				material = new THREE.MeshBasicMaterial({
 					opacity: 0.5,
 					transparent: true,

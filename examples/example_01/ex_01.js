@@ -38,7 +38,10 @@ class App {
 
 		container.appendChild(this.renderer.domElement);
 
-		this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+		this.controls = new OrbitControls(
+			this.camera,
+			this.renderer.domElement
+		);
 		this.controls.target.set(0, 1.6, 0);
 		this.controls.update();
 
@@ -190,10 +193,9 @@ class App {
 			},
 		};
 		const content = {
-			header: 'Zadanie 4',
-			main:
-				'A.\nSpróbuj zlokalizować modele przedstawiające stare miasto, następnie zlokalizuj ratusz miejski i sprawdź czy jesteś w stanie obejrzeć go z każdej strony. \rB. \nNastępnie spróbuj zlokalizować modele przedstawiające Stary Browar i ulicę Półwiejską, następnie zlokalizuj Stary Browar i sprawdź czy jesteś w stanie obejrzeć go z każdej strony.',
-			footer: 'Testy możliwości zastosowania WebXR \nw planowaniu przestrzennym',
+			header: 'Exercise 4',
+			main: 'When you are in a virtual reality environment: 1.\n Try to locate the models depicting the old town, then locate the town hall and check if you can see it from all sides. \n2. Try to locate the models showing Stary Browar and Półwiejska Street, then locate Stary Browar and check if you can see it from all sides.',
+			footer: 'Usability of WebXR visualizations in spatial planning',
 		};
 		const ui = new CanvasUI(content, config);
 		ui.mesh.position.set(0, 1.5, 3);
@@ -234,7 +236,9 @@ class App {
 		const controllerModelFactory = new XRControllerModelFactory();
 
 		this.controllerGrip = this.renderer.xr.getControllerGrip(0);
-		this.controllerGrip.add(controllerModelFactory.createControllerModel(this.controllerGrip));
+		this.controllerGrip.add(
+			controllerModelFactory.createControllerModel(this.controllerGrip)
+		);
 
 		this.controller1 = this.renderer.xr.getController(1);
 		this.controller1.addEventListener('selectstart', onSelectStart);
@@ -283,7 +287,10 @@ class App {
 				);
 				geometry.setAttribute(
 					'color',
-					new THREE.Float32BufferAttribute([0.5, 0.5, 0.5, 0, 0, 0], 3)
+					new THREE.Float32BufferAttribute(
+						[0.5, 0.5, 0.5, 0, 0, 0],
+						3
+					)
 				);
 
 				material = new THREE.LineBasicMaterial({
@@ -294,7 +301,11 @@ class App {
 				return new THREE.Line(geometry, material);
 
 			case 'gaze':
-				geometry = new THREE.RingBufferGeometry(0.2, 0.4, 32).translate(0, 0, -1);
+				geometry = new THREE.RingBufferGeometry(0.2, 0.4, 32).translate(
+					0,
+					0,
+					-1
+				);
 				material = new THREE.MeshBasicMaterial({
 					opacity: 0.9,
 					transparent: true,
@@ -373,11 +384,11 @@ class App {
 			function (gltf) {
 				const bbox = new THREE.Box3().setFromObject(gltf.scene);
 				console.log(
-					`min:${bbox.min.x.toFixed(2)},${bbox.min.y.toFixed(2)},${bbox.min.z.toFixed(
+					`min:${bbox.min.x.toFixed(2)},${bbox.min.y.toFixed(
 						2
-					)} -  max:${bbox.max.x.toFixed(2)},${bbox.max.y.toFixed(
+					)},${bbox.min.z.toFixed(2)} -  max:${bbox.max.x.toFixed(
 						2
-					)},${bbox.max.z.toFixed(2)}`
+					)},${bbox.max.y.toFixed(2)},${bbox.max.z.toFixed(2)}`
 				);
 
 				self.mymesh1 = gltf.scene;
@@ -414,11 +425,11 @@ class App {
 			function (gltf) {
 				const bbox = new THREE.Box3().setFromObject(gltf.scene);
 				console.log(
-					`min:${bbox.min.x.toFixed(2)},${bbox.min.y.toFixed(2)},${bbox.min.z.toFixed(
+					`min:${bbox.min.x.toFixed(2)},${bbox.min.y.toFixed(
 						2
-					)} -  max:${bbox.max.x.toFixed(2)},${bbox.max.y.toFixed(
+					)},${bbox.min.z.toFixed(2)} -  max:${bbox.max.x.toFixed(
 						2
-					)},${bbox.max.z.toFixed(2)}`
+					)},${bbox.max.y.toFixed(2)},${bbox.max.z.toFixed(2)}`
 				);
 
 				self.mymesh = gltf.scene;
@@ -453,11 +464,11 @@ class App {
 			function (gltf) {
 				const bbox = new THREE.Box3().setFromObject(gltf.scene);
 				console.log(
-					`min:${bbox.min.x.toFixed(2)},${bbox.min.y.toFixed(2)},${bbox.min.z.toFixed(
+					`min:${bbox.min.x.toFixed(2)},${bbox.min.y.toFixed(
 						2
-					)} -  max:${bbox.max.x.toFixed(2)},${bbox.max.y.toFixed(
+					)},${bbox.min.z.toFixed(2)} -  max:${bbox.max.x.toFixed(
 						2
-					)},${bbox.max.z.toFixed(2)}`
+					)},${bbox.max.y.toFixed(2)},${bbox.max.z.toFixed(2)}`
 				);
 
 				self.mymesh = gltf.scene;
@@ -493,11 +504,11 @@ class App {
 			function (gltf) {
 				const bbox = new THREE.Box3().setFromObject(gltf.scene);
 				console.log(
-					`min:${bbox.min.x.toFixed(2)},${bbox.min.y.toFixed(2)},${bbox.min.z.toFixed(
+					`min:${bbox.min.x.toFixed(2)},${bbox.min.y.toFixed(
 						2
-					)} -  max:${bbox.max.x.toFixed(2)},${bbox.max.y.toFixed(
+					)},${bbox.min.z.toFixed(2)} -  max:${bbox.max.x.toFixed(
 						2
-					)},${bbox.max.z.toFixed(2)}`
+					)},${bbox.max.y.toFixed(2)},${bbox.max.z.toFixed(2)}`
 				);
 
 				self.mymesh = gltf.scene;
